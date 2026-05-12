@@ -1,4 +1,4 @@
-package gestorreuniones.logica;
+package logica;
 
 public abstract class Reunion {
 }
