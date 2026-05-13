@@ -63,6 +63,12 @@ public class Invitacion {
         this.invitado = invitado;
     }
 
+    /**
+     * Metodo que entrega información representativa de la clase actual.
+     *
+     * @return Retorna la información de la clase.
+     */
+    @Override
     public String toString(){
         return "Invitación {" +
                 "Hora de envío: " + hora +
