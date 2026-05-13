@@ -6,7 +6,7 @@ Desarrolladores:
 - Daniel Esteban Ortiz Estrada
 - Benjamin Alonso Silva Sepúlveda
 
-Cambios durante el desarrollo:
+Cambios en el diseño durante el desarrollo:
 
 - Se creó una clase Persona de la cual heredan:
     - Empleado
