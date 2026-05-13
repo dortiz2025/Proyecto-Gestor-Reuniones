@@ -3,44 +3,70 @@ package logica;
 import java.time.Instant;
 
 /**
- * Clase que representa una invitación a una reunión
+ * Clase que representa una invitación a una reunión.
  */
 public class Invitacion {
     /**
-     * Hora de la reunión
+     * Hora en que se envió la invitación.
      */
     private Instant hora;
 
     /**
-     * Invitado a la reunión
+     * Entidad a la que va dirigida la invitación.
      */
     private Invitable invitado;
 
     /**
-     * Asigna la hora de la reunión y el invitado
+     * Constructor de la invitación.
      *
-     * @param hora Hora de la invitación
+     * @param hora Hora de envío de la invitación.
+     * @param invitado Entidad que recibirá la invitación.
      */
-    public Invitacion(Instant hora){
+    public Invitacion(Instant hora, Invitable invitado){
         this.hora = hora;
+        this.invitado = invitado;
     }
 
     /**
-     * Setter de hora
-     * Asigna hora de la invitación
+     * Getter de la hora de envío.
      *
-     * @param hora Hora de la invitación
+     * @return Retorna la hora de la invitación.
+     */
+    public Instant getHora(){
+        return hora;
+    }
+
+    /**
+     * Setter de la hora de envío.
+     *
+     * @param hora Nueva hora de la invitación.
      */
     public void setHora(Instant hora){
         this.hora = hora;
     }
 
     /**
-     * Getter de hora
+     * Getter del invitado.
      *
-     * @return Retorna la hora de la invitación
+     * @return Retorna la entidad invitada.
      */
-    public Instant getHora(){
-        return hora;
+    public Invitable getInvitado(){
+        return invitado;
+    }
+
+    /**
+     * Setter del invitado.
+     *
+     * @param invitado Nueva entidad invitada.
+     */
+    public void setInvitado(Invitable invitado){
+        this.invitado = invitado;
+    }
+
+    public String toString(){
+        return "Invitación {" +
+                "Hora de envío: " + hora +
+                ", Invitado: " + invitado +
+                '}';
     }
 }

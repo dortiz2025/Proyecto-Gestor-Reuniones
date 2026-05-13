@@ -1,11 +1,11 @@
 package logica;
 
 /**
- * Interfaz que permite implementar la capacidad de ser invitado a una reunion
+ * Interfaz que define la capacidad de una entidad para ser invitada a una reunión
  */
 public interface Invitable {
     /**
-     * Realiza la invitación a una reunión
+     * Ejecuta la acción de invitar a un participante
      */
     public void invitar();
 }
