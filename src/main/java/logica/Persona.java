@@ -3,11 +3,10 @@ package logica;
 /**
  * Clase que representa a una persona que puede ser invitada a una reunión.
  */
-public abstract class Persona {
+public abstract class Persona implements Invitable{
     private String nombre;
     private String apellidos;
     private String correo;
-
     /**
      * Constructor de Persona.
      *
@@ -15,7 +14,8 @@ public abstract class Persona {
      * @param apellidos Asigna los apellidos de la persona.
      * @param correo Asigna el correo de la persona.
      */
-    public Persona(String nombre, String apellidos, String correo) {
+
+    public Persona(String nombre, String apellidos, String correo){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
@@ -76,5 +76,16 @@ public abstract class Persona {
             this.correo = correo;
         }
 
+    }
+
+    /**
+     * Metodo que entrega información acerca de la clase
+     *
+     * @return información de la clase
+     */
+
+    @Override
+    public String toString() {
+        return "nombre= " + nombre + ", apellidos= " + apellidos + ", correo= " + correo;
     }
 }
