@@ -3,7 +3,7 @@ package logica;
 /**
  * Clase que representa a una persona que puede ser invitada a una reunión.
  */
-public abstract class Persona {
+public abstract class Persona implements Invitable{
     private String nombre;
     private String apellidos;
     private String correo;
