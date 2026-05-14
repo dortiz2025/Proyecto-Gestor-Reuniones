@@ -13,7 +13,7 @@ public class Empleado extends Persona implements Invitable{
      * @param nombre Asigna el nombre del empleado.
      * @param apellidos Asigna los apellidos del empleado.
      * @param correo Asigna el correo del empleado.
-     * @param id Asigna el id del empleado.
+     * @param id Asigna el ID del empleado.
      * @param departamento Asigna el departamento del empleado.
      */
     public Empleado(String nombre, String apellidos, String correo, String id, Departamento departamento) {
