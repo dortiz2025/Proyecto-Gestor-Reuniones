@@ -73,5 +73,10 @@ public abstract class Reunion {
         System.out.println("Finalizando Reunion");
         this.horaFin = Instant.now();
     }
-
+    public Instant getHoraInicio() {
+        return this.horaInicio;
+    }
+    public Instant getHoraFin() {
+        return this.horaFin;
+    }
 }
