@@ -14,12 +14,14 @@ public class ReunionVirtual extends Reunion{
     /**
      * Constructor de ReunionVirtual
      *
-     * @param fecha Asigna fecha agendada de la reunión.
-     * @param horaPrevista Asigna hora de inicio prevista.
-     * @param duracionPrevista Asigna duración prevista de la reunión
+     * @param fecha Fecha agendada de la reunión.
+     * @param horaPrevista Hora de inicio prevista.
+     * @param duracionPrevista Duración prevista de la reunión.
+     * @param organizador Organizador de la reunión (debe ser un empleado).
+     * @param enlace Enlace de la reunión virtual.
      */
-    public ReunionVirtual(Date fecha, Instant horaPrevista, Duration duracionPrevista, String enlace){
-        super(fecha, horaPrevista, duracionPrevista);
+    public ReunionVirtual(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, String enlace){
+        super(fecha, horaPrevista, duracionPrevista, organizador);
         this.enlace = enlace;
     }
 }

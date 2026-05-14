@@ -14,13 +14,14 @@ public class ReunionPresencial extends Reunion{
     /**
      * Constructor de ReunionPresencial
      *
-     * @param fecha Asigna fecha agendada de la reunión.
-     * @param horaPrevista Asigna hora de inicio prevista.
-     * @param duracionPrevista Asigna duración prevista de la reunión.
-     * @param sala Asigna la sala en la que se realizará la reunión.
+     * @param fecha Fecha agendada de la reunión.
+     * @param horaPrevista Hora de inicio prevista.
+     * @param duracionPrevista Duración prevista de la reunión.
+     * @param organizador Organizador de la reunión (debe ser un empleado).
+     * @param sala Sala en la que se realizará la reunión.
      */
-    public ReunionPresencial(Date fecha, Instant horaPrevista, Duration duracionPrevista, String sala){
-        super(fecha, horaPrevista, duracionPrevista);
+    public ReunionPresencial(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, String sala){
+        super(fecha, horaPrevista, duracionPrevista, organizador);
         this.sala = sala;
     }
 }

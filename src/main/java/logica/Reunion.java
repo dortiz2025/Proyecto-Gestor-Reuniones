@@ -12,6 +12,7 @@ public abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
+    private Empleado organizador;
 
     /**
      * Hora real en que inició la reunión.
@@ -25,16 +26,18 @@ public abstract class Reunion {
     private Instant horaFin;
 
     /**
-     * Constructor de Reunion
+     * Se crea una Reunion
      *
-     * @param fecha Asigna fecha agendada de la reunión.
-     * @param horaPrevista Asigna hora de inicio prevista.
-     * @param duracionPrevista Asigna duración prevista de la reunión
+     * @param fecha Fecha agendada de la reunión.
+     * @param horaPrevista Hora de inicio prevista.
+     * @param duracionPrevista Duración prevista de la reunión
+     * @param organizador Organizador de la reunión (debe ser un empleado).
      */
-    public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista) {
+    public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador) {
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
+        this.organizador = organizador;
     }
 
 }
