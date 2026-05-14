@@ -4,11 +4,12 @@ package logica;
  * Clase que representa un departamento de una empresa.
  */
 public class Departamento{
+
     private String nombre;
     private int cantidadEmpleados;
 
     /**
-     * Constructor de Departamento
+     * Constructor de Departamento.
      *
      * @param nombre asigna nombre al departamento
      * @param cantidadEmpleados asigna número de empleados
@@ -19,16 +20,16 @@ public class Departamento{
     }
 
     /**
-     * Setter del nombre del departamento
+     * Setter del nombre del departamento.
      *
-     * @param nombre Nuevo nombre del departamento
+     * @param nombre Nuevo nombre del departamento.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Getter del nombre del departamento
+     * Getter del nombre del departamento.
      *
      * @return nombre del departamento
      */
@@ -37,27 +38,27 @@ public class Departamento{
     }
 
     /**
-     * Setter de la cantidad de empleados
+     * Setter de la cantidad de empleados.
      *
-     * @param cantidadEmpleados Nueva cantidad de empleados
+     * @param cantidadEmpleados Nueva cantidad de empleados.
      */
-    public void setcantidadEmpleados(int cantidadEmpleados) {
+    public void setCantidadEmpleados(int cantidadEmpleados) {
         this.cantidadEmpleados = cantidadEmpleados;
     }
 
     /**
-     * Getter de la cantidad de empleados
+     * Getter de la cantidad de empleados.
      *
-     * @return cantidad de empleados
+     * @return Cantidad de empleados.
      */
     public int getCantidadEmpleados() {
         return cantidadEmpleados;
     }
 
     /**
-     * Metodo que entrega información sobre Departamento
+     * Metodo que entrega información sobre Departamento.
      *
-     * @return información de la clase
+     * @return Información de la clase.
      */
 
     @Override
