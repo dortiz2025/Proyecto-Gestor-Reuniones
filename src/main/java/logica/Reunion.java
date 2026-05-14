@@ -2,7 +2,9 @@ package logica;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Clase que representa una reunión con su respectiva información.
@@ -14,16 +16,12 @@ public abstract class Reunion {
     private Duration duracionPrevista;
     private Empleado organizador;
 
-    /**
-     * Hora real en que inició la reunión.
-     * Puede ser distinta a horaPrevista.
-     */
     private Instant horaInicio;
-
-    /**
-     * Hora real en la que se finalizó la reunión.
-     */
     private Instant horaFin;
+
+    private List<Invitacion> invitaciones;
+    private List<Asistencia> asistencias;
+    private List<Nota> notas;
 
     /**
      * Se crea una Reunion
@@ -38,6 +36,43 @@ public abstract class Reunion {
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
         this.organizador = organizador;
+
+        this.invitaciones = new ArrayList<>();
+        this.asistencias = new ArrayList<>();
+        this.notas = new ArrayList<>();
+    }
+
+    public List obtenerAsistencias() {
+        return asistencias;
+    }
+
+    public List obtenerInvitaciones() {
+        return null;
+    }
+
+    public List obtenerRetrasos() {
+        return null;
+    }
+    public int obtenerTotalAsistencia() {
+        return 0;
+    }
+
+    public float obtenerPorcentajeAsistencia() {
+        return 0;
+    }
+
+    public float calcularTiempoReal() {
+        return 0;
+    }
+
+    public void iniciar(){
+        System.out.println("Iniciando Reunion");
+        this.horaInicio = Instant.now();
+    }
+
+    public void finalizar(){
+        System.out.println("Finalizando Reunion");
+        this.horaFin = Instant.now();
     }
 
 }
