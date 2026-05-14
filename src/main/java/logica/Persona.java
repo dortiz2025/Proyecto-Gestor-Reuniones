@@ -4,7 +4,8 @@ public abstract class Persona {
     private String nombre;
     private String apellidos;
     private String correo;
-    public Persona(){
+
+    public Persona(String nombre, String appelidos, String correo){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
@@ -34,5 +35,10 @@ public abstract class Persona {
             this.correo = correo;
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "nombre= " + nombre + ", apellidos= " + apellidos + ", correo= " + correo;
     }
 }
