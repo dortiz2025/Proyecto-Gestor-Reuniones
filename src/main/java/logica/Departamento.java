@@ -5,7 +5,7 @@ package logica;
  */
 public class Departamento{
     private String nombre;
-    public int empleados;
+    private int cantidadEmpleados;
 
     /**
      * Constructor de Departamento
@@ -37,10 +37,10 @@ public class Departamento{
     /**
      * Setter de la cantidad de empleados
      *
-     * @param empleados Nueva cantidad de empleados
+     * @param cantidadEmpleados Nueva cantidad de empleados
      */
-    public void setEmpleados(int empleados) {
-        this.empleados = empleados;
+    public void setcantidadEmpleados(int cantidadEmpleados) {
+        this.cantidadEmpleados = cantidadEmpleados;
     }
 
     /**
@@ -48,8 +48,8 @@ public class Departamento{
      *
      * @return cantidad de empleados
      */
-    public int obtenerCantidadEmpleados() {
-        return empleados;
+    public int getCantidadEmpleados() {
+        return cantidadEmpleados;
     }
 
     /**
@@ -60,6 +60,6 @@ public class Departamento{
 
     @Override
     public String toString() {
-        return "Departamento{" + "nombre= " + nombre + ", empleados=" + empleados + '}';
+        return "Departamento{" + "nombre= " + nombre + ", empleados=" + cantidadEmpleados + '}';
     }
 }
