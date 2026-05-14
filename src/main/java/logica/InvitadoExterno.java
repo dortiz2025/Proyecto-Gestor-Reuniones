@@ -16,8 +16,11 @@ public class InvitadoExterno extends Persona{
         super(nombre,apellidos,correo);
     }
 
+    /**
+     * Metodo que notifica al invitadoExterno que ha sido invitado a una reunión.
+     */
     @Override
     public void invitar() {
-
+        System.out.println("Invitación para " + getNombre());
     }
 }

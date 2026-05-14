@@ -6,43 +6,37 @@ import java.time.Instant;
  * Clase que representa una invitación a una reunión.
  */
 public class Invitacion {
-    /**
-     * Hora en que se envió la invitación.
-     */
-    private Instant hora;
 
-    /**
-     * Entidad a la que va dirigida la invitación.
-     */
+    private Instant horaEnvio;
     private Invitable invitado;
 
     /**
      * Constructor de la invitación.
      *
-     * @param hora Hora de envío de la invitación.
+     * @param horaEnvio Hora de envío de la invitación.
      * @param invitado Entidad que recibirá la invitación.
      */
-    public Invitacion(Instant hora, Invitable invitado){
-        this.hora = hora;
+    public Invitacion(Instant horaEnvio, Invitable invitado){
+        this.horaEnvio = horaEnvio;
         this.invitado = invitado;
     }
 
     /**
      * Getter de la hora de envío.
      *
-     * @return Retorna la hora de la invitación.
+     * @return Retorna la hora de envío de la invitación.
      */
-    public Instant getHora(){
-        return hora;
+    public Instant getHoraEnvio(){
+        return horaEnvio;
     }
 
     /**
      * Setter de la hora de envío.
      *
-     * @param hora Nueva hora de la invitación.
+     * @param horaEnvio Nueva hora de envío de la invitación.
      */
-    public void setHora(Instant hora){
-        this.hora = hora;
+    public void setHoraEnvio(Instant horaEnvio){
+        this.horaEnvio = horaEnvio;
     }
 
     /**
@@ -71,7 +65,7 @@ public class Invitacion {
     @Override
     public String toString(){
         return "Invitación {" +
-                "Hora de envío: " + hora +
+                "Hora de envío: " + horaEnvio +
                 ", Invitado: " + invitado +
                 '}';
     }

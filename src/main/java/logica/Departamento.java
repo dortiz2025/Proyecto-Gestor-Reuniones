@@ -3,7 +3,7 @@ package logica;
 /**
  * Clase que representa un departamento de una empresa.
  */
-public class Departamento{
+public class Departamento implements Invitable {
 
     private String nombre;
     private int cantidadEmpleados;
@@ -56,11 +56,18 @@ public class Departamento{
     }
 
     /**
+     * Metodo que notifica que el departamento ha sido invitado a una reunión.
+     */
+    @Override
+    public void invitar() {
+        System.out.println("Invitación para departamento " + getNombre());
+    }
+
+    /**
      * Metodo que entrega información sobre Departamento.
      *
      * @return Información de la clase.
      */
-
     @Override
     public String toString() {
         return "Departamento{" + "nombre= " + nombre + ", empleados=" + cantidadEmpleados + '}';
