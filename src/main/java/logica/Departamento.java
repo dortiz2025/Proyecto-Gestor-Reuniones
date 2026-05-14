@@ -10,10 +10,12 @@ public class Departamento{
     /**
      * Constructor de Departamento
      *
-     * @param nombre
+     * @param nombre asigna nombre al departamento
+     * @param cantidadEmpleados asigna número de empleados
      */
-    public Departamento(String nombre) {
+    public Departamento(String nombre, int cantidadEmpleados) {
         this.nombre = nombre;
+        this.cantidadEmpleados = cantidadEmpleados;
     }
 
     /**
