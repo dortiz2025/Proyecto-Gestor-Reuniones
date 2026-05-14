@@ -26,9 +26,9 @@ public abstract class Reunion {
     private List<Nota> notas;
 
     /**
-     * Se crea una Reunion
+     * Se crea una Reunion.
      *
-     * @param tipoReunion Tipo de reunión
+     * @param tipoReunion Tipo de reunión.
      * @param fecha Fecha agendada de la reunión.
      * @param horaPrevista Hora de inicio prevista.
      * @param duracionPrevista Duración prevista de la reunión
