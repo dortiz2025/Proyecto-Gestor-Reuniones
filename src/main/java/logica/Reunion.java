@@ -10,6 +10,7 @@ import java.util.List;
  * Clase que representa una reunión con su respectiva información.
  */
 public abstract class Reunion {
+    private
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
