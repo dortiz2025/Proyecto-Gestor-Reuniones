@@ -23,4 +23,16 @@ public class InvitadoExterno extends Persona{
     public void invitar() {
         System.out.println("Invitación para " + getNombre());
     }
+
+    /**
+     * Metodo que entrega información de InvitadoExterno.
+     *
+     * @return Información del invitado.
+     */
+    @Override
+    public String toString() {
+        return "InvitadoExterno{" +
+                super.toString() +
+                "'}";
+    }
 }

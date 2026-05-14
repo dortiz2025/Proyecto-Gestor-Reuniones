@@ -66,10 +66,13 @@ public class Departamento implements Invitable {
     /**
      * Metodo que entrega información sobre Departamento.
      *
-     * @return Información de la clase.
+     * @return Información del departamento.
      */
     @Override
     public String toString() {
-        return "Departamento{" + "nombre= " + nombre + ", empleados=" + cantidadEmpleados + '}';
+        return "Departamento{" +
+                "nombre: '" + nombre + "'" +
+                ", empleados: '" + cantidadEmpleados + "'" +
+                "'}";
     }
 }

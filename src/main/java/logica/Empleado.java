@@ -20,7 +20,6 @@ public class Empleado extends Persona{
 
         super(nombre, apellidos, correo);
         this.id = id;
-        this.departamento = departamento;
 
     }
 
@@ -43,24 +42,6 @@ public class Empleado extends Persona{
     }
 
     /**
-     * Setter de Departamento
-     *
-     * @param departamento Departamento al que pertenece la persona
-     */
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
-    /**
-     * Getter del nombre del departamento y cantidad de empleados
-     *
-     * @return nombre del departamento
-     */
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    /**
      * Metodo que notifica al empleado que ha sido invitado a una reunión.
      */
     @Override
@@ -69,12 +50,15 @@ public class Empleado extends Persona{
     }
 
     /**
-     * Metodo que entrega información acerca de la clase
+     * Metodo que entrega información sobre Empleado.
      *
-     * @return información de la clase
+     * @return Información del empleado.
      */
     @Override
     public String toString() {
-        return super.toString() + " id= " + id + departamento.toString();
+        return "Empleado{" +
+                super.toString() +
+                ", id: '" + id +
+                "'}";
     }
 }
