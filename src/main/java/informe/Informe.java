@@ -1,4 +1,4 @@
-package informes;
+package informe;
 
 public class Informe {
 }
