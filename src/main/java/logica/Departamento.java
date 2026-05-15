@@ -1,22 +1,24 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase que representa un departamento de una empresa.
  */
 public class Departamento implements Invitable {
 
     private String nombre;
-    private int cantidadEmpleados;
+    private List<Empleado> empleados;
 
     /**
      * Constructor de Departamento.
      *
      * @param nombre asigna nombre al departamento
-     * @param cantidadEmpleados asigna número de empleados
      */
-    public Departamento(String nombre, int cantidadEmpleados) {
+    public Departamento(String nombre) {
         this.nombre = nombre;
-        this.cantidadEmpleados = cantidadEmpleados;
+        this.empleados = new ArrayList<>();
     }
 
     /**
@@ -38,21 +40,20 @@ public class Departamento implements Invitable {
     }
 
     /**
-     * Setter de la cantidad de empleados.
+     * Metodo que entrega la cantidad de empleados del departamento.
      *
-     * @param cantidadEmpleados Nueva cantidad de empleados.
+     * @return Cantidad de empleados del departamento.
      */
-    public void setCantidadEmpleados(int cantidadEmpleados) {
-        this.cantidadEmpleados = cantidadEmpleados;
+    public int getCantidadEmpleados() {
+        return empleados.size();
     }
 
     /**
-     * Getter de la cantidad de empleados.
-     *
-     * @return Cantidad de empleados.
+     * Metodo que agrega un empleado a la lista de empleados del departamento.
+     * @param empleado Empleado que será agregado.
      */
-    public int getCantidadEmpleados() {
-        return cantidadEmpleados;
+    public void agregarEmpleado(Empleado empleado) {
+        this.empleados.add(empleado);
     }
 
     /**
@@ -72,7 +73,7 @@ public class Departamento implements Invitable {
     public String toString() {
         return "Departamento{" +
                 "nombre: '" + nombre + "'" +
-                ", empleados: '" + cantidadEmpleados + "'" +
+                ", empleados: '" + getCantidadEmpleados() + "'" +
                 "'}";
     }
 }
