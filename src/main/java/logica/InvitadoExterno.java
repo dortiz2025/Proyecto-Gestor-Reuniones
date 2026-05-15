@@ -21,7 +21,7 @@ public class InvitadoExterno extends Persona{
      */
     @Override
     public void invitar() {
-        System.out.println("Invitación para " + getNombre());
+        System.out.println("Invitación para " + this.getNombre());
     }
 
     /**

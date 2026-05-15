@@ -65,8 +65,8 @@ public class Invitacion {
     @Override
     public String toString(){
         return "Invitación {" +
-                "Hora de envío: " + horaEnvio +
-                ", Invitado: " + invitado +
+                "Hora de envío: " + this.horaEnvio +
+                ", Invitado: " + this.invitado +
                 '}';
     }
 }

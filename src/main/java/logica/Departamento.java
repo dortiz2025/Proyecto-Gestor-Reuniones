@@ -36,7 +36,7 @@ public class Departamento implements Invitable {
      * @return nombre del departamento
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Departamento implements Invitable {
      * @return Cantidad de empleados del departamento.
      */
     public int getCantidadEmpleados() {
-        return empleados.size();
+        return this.empleados.size();
     }
 
     /**
@@ -61,7 +61,7 @@ public class Departamento implements Invitable {
      */
     @Override
     public void invitar() {
-        System.out.println("Invitación para departamento " + getNombre());
+        System.out.println("Invitación para departamento " + this.getNombre());
     }
 
     /**
@@ -72,8 +72,8 @@ public class Departamento implements Invitable {
     @Override
     public String toString() {
         return "Departamento{" +
-                "nombre: '" + nombre + "'" +
-                ", empleados: '" + getCantidadEmpleados() + "'" +
+                "nombre: '" + this.nombre + "'" +
+                ", empleados: '" + this.getCantidadEmpleados() + "'" +
                 "'}";
     }
 }
