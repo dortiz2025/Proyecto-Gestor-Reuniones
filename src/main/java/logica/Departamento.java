@@ -71,7 +71,9 @@ public class Departamento implements Invitable {
      */
     @Override
     public void invitar() {
-        System.out.println("Invitación para departamento " + this.getNombre());
+        for (Empleado empleado : this.empleados) {
+            empleado.invitar(); //Se invita a cada empleado.
+        }
     }
 
     /**
