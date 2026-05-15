@@ -1,22 +1,24 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase que representa un departamento de una empresa.
  */
-public class Departamento{
+public class Departamento implements Invitable {
 
     private String nombre;
-    private int cantidadEmpleados;
+    private List<Empleado> empleados;
 
     /**
      * Constructor de Departamento.
      *
      * @param nombre asigna nombre al departamento
-     * @param cantidadEmpleados asigna número de empleados
      */
-    public Departamento(String nombre, int cantidadEmpleados) {
+    public Departamento(String nombre) {
         this.nombre = nombre;
-        this.cantidadEmpleados = cantidadEmpleados;
+        this.empleados = new ArrayList<>();
     }
 
     /**
@@ -34,35 +36,54 @@ public class Departamento{
      * @return nombre del departamento
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
-     * Setter de la cantidad de empleados.
+     * Metodo que entrega la cantidad de empleados del departamento.
      *
-     * @param cantidadEmpleados Nueva cantidad de empleados.
-     */
-    public void setCantidadEmpleados(int cantidadEmpleados) {
-        this.cantidadEmpleados = cantidadEmpleados;
-    }
-
-    /**
-     * Getter de la cantidad de empleados.
-     *
-     * @return Cantidad de empleados.
+     * @return Cantidad de empleados del departamento.
      */
     public int getCantidadEmpleados() {
-        return cantidadEmpleados;
+        return this.empleados.size();
+    }
+
+    /**
+     * Metodo que agrega un empleado a la lista de empleados del departamento.
+     *
+     * @param empleado Empleado que será agregado.
+     */
+    public void agregarEmpleado(Empleado empleado) {
+        this.empleados.add(empleado);
+    }
+
+    /**
+     * Getter de empleados.
+     *
+     * @return Entrega la lista de empleados del departamento.
+     */
+    public List<Empleado> getEmpleados() {
+        return this.empleados;
+    }
+
+    /**
+     * Metodo que notifica que el departamento ha sido invitado a una reunión.
+     */
+    @Override
+    public void invitar() {
+        System.out.println("Invitación para departamento " + this.getNombre());
     }
 
     /**
      * Metodo que entrega información sobre Departamento.
      *
-     * @return Información de la clase.
+     * @return Información del departamento.
      */
-
     @Override
     public String toString() {
-        return "Departamento{" + "nombre= " + nombre + ", empleados=" + cantidadEmpleados + '}';
+        return "Departamento{" +
+                "nombre: '" + this.nombre + "'" +
+                ", empleados: '" + this.getCantidadEmpleados() + "'" +
+                "'}";
     }
 }

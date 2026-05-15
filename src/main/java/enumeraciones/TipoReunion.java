@@ -3,7 +3,7 @@ package enumeraciones;
 /**
  * Enum de tipo de reunión
  */
-public enum tipoReunion {
+public enum TipoReunion {
     /**
      * Reunión técnica.
      */
