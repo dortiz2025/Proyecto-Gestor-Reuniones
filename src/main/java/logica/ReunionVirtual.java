@@ -4,7 +4,7 @@ import enumeraciones.TipoReunion;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Clase que representa una reunión virtual.
@@ -23,7 +23,7 @@ public class ReunionVirtual extends Reunion{
      * @param organizador Organizador de la reunión (debe ser un empleado).
      * @param enlace Enlace de la reunión virtual.
      */
-    public ReunionVirtual(TipoReunion tipoReunion, Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, String enlace){
+    public ReunionVirtual(TipoReunion tipoReunion, LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, String enlace){
         super(tipoReunion, fecha, horaPrevista, duracionPrevista, organizador);
         this.enlace = enlace;
     }

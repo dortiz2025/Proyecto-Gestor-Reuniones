@@ -4,8 +4,8 @@ import enumeraciones.*;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public abstract class Reunion {
     private TipoReunion tipoReunion;
-    private Date fecha;
+    private LocalDate fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
     private Empleado organizador;
@@ -34,7 +34,7 @@ public abstract class Reunion {
      * @param duracionPrevista Duración prevista de la reunión
      * @param organizador Organizador de la reunión (debe ser un empleado).
      */
-    public Reunion(TipoReunion tipoReunion, Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador) {
+    public Reunion(TipoReunion tipoReunion, LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador) {
         this.tipoReunion = tipoReunion;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -106,7 +106,7 @@ public abstract class Reunion {
      */
     public List obtenerRetrasos() {
         List<Retraso> retrasos = new ArrayList<>();
-        for (Asistencia asistencia : asistencias){
+        for (Asistencia asistencia : this.asistencias){
             if(asistencia instanceof Retraso){
             retrasos.add((Retraso) asistencia);
             }
@@ -122,10 +122,6 @@ public abstract class Reunion {
         return 0;
     }
 
-    public float calcularTiempoReal() {
-        return 0;
-    }
-
     public void iniciar(){
         System.out.println("Iniciando Reunion");
         this.horaInicio = Instant.now();
@@ -134,6 +130,10 @@ public abstract class Reunion {
     public void finalizar(){
         System.out.println("Finalizando Reunion");
         this.horaFin = Instant.now();
+    }
+
+    public float calcularTiempoReal() {
+        return 0;
     }
 
 }

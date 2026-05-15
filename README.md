@@ -20,3 +20,7 @@ Además, el polimorfismo permite hacer listas de "personas" dentro del proyecto.
 
 
 - La relación Empleado-Asistencia ahora es Persona-Asistencia para incluir a InvitadoExterno.
+
+
+- Se cambia formato Date por LocalDate para atributo fecha en Reunion.
+  El formato es más amigable para una fecha.
