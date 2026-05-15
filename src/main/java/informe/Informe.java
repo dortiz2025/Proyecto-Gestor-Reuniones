@@ -28,6 +28,7 @@ public class Informe {
         try (FileWriter fw = new FileWriter("InformeReunion.txt"); PrintWriter escritor = new PrintWriter(fw)) {
 
             escritor.println("Organizador: " + reunion.getOrganizador());
+            escritor.println("Invitados: " + reunion.obtenerInvitaciones());
 
             if (reunion instanceof ReunionPresencial) {
                 escritor.println("Tipo de reunión: Presencial");
@@ -39,14 +40,18 @@ public class Informe {
             escritor.println(("Fecha: " + reunion.getFecha() + " | Hora: " + reunion.getHora();
 
             if (reunion instanceof ReunionPresencial) {
-                escritor.println("");
+                escritor.println("Sala: " + reunion.getSala();
 
             } else if (reunion instanceof ReunionVirtual) {
-                escritor.println("");
+                escritor.println("Enlace: " + reunion.getEnlace();
             }
-            escritor.println("");
-            escritor.println();
-            escritor.println();
+            escritor.println("      --REUNIÓN FINALIZADA--");
+            escritor.println("Hora inicio: " + reunion.getHoraIncio + " | Hora término: " + reunion.getHoraTermino();
+            //para la clase asistencia por favor colocar de inmediato los atrasos igual para que se incluyan aquí
+            //utilicemos la lista completa para colocar ausentes/presentes(atraso o sin atraso)
+            escritor.println("  -ASISTENCIA-\n" + "Total empleados presentes: " + reunion.obtenerTotalAsistencia() +
+                    "\n" + reunion.obtenerAsistencias());
+            escritor.println("  -NOTAS-" + reunion.getNotas();
 
         } catch (IOException e) {
 
