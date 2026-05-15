@@ -3,8 +3,8 @@ package logica;
 import enumeraciones.TipoReunion;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Clase que representa una reunión presencial.
@@ -23,7 +23,7 @@ public class ReunionPresencial extends Reunion{
      * @param organizador Organizador de la reunión (debe ser un empleado).
      * @param sala Sala en la que se realizará la reunión.
      */
-    public ReunionPresencial(TipoReunion tipoReunion, LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, String sala){
+    public ReunionPresencial(TipoReunion tipoReunion, LocalDate fecha, LocalTime horaPrevista, Duration duracionPrevista, Empleado organizador, String sala){
         super(tipoReunion, fecha, horaPrevista, duracionPrevista, organizador);
         this.sala = sala;
     }
