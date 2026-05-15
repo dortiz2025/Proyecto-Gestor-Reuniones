@@ -42,7 +42,7 @@ public class Invitacion {
     /**
      * Getter del invitado.
      *
-     * @return Retorna la entidad invitada.
+     * @return Entrega la referencia de la entidad invitada.
      */
     public Invitable getInvitado(){
         return invitado;
@@ -65,8 +65,8 @@ public class Invitacion {
     @Override
     public String toString(){
         return "Invitación {" +
-                "Hora de envío: " + this.horaEnvio +
-                ", Invitado: " + this.invitado +
+                "Hora de envío: '" + this.horaEnvio + "'" +
+                ", Invitado: '" + this.invitado + "'" +
                 '}';
     }
 }
