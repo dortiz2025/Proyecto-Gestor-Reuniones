@@ -6,6 +6,11 @@ package logica;
 public class Asistencia {
     private Persona asistente;
 
+    /**
+     * Crea una asistencia.
+     *
+     * @param asistente Referencia de la persona asistente.
+     */
     public Asistencia(Persona asistente) {
         this.asistente = asistente;
     }
