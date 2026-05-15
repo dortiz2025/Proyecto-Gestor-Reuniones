@@ -6,4 +6,7 @@ package logica;
  */
 public class Retraso extends Asistencia {
 
+    public Retraso(Persona persona) {
+        super(persona);
+    }
 }
