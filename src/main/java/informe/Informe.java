@@ -19,9 +19,7 @@ import java.util.List;
  * Clase que se encarga de generar informe sobre la reunión.
  */
 public class Informe {
-    public void crearInforme(Date fecha, Duration duracionPrevista, Instant horaPrevista,
-                             Empleado organizador, Asistencia empleadosPresentes,
-                             Duration duracionFinal, Reunion tipoReunion, Retraso retrasos, Nota notas){
+    public void crearInforme(Reunion reunion, Empleado organizador, Asistencia empleadosPresentes, Retraso retrasos, Nota notas){
 
         try (FileWriter fw = new FileWriter("InformeReunion.txt");
              PrintWriter escritor = new PrintWriter(fw)) {
