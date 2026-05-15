@@ -123,21 +123,55 @@ public abstract class Reunion {
     }
 
     /**
+     * Metodo que entrega una lista de ausentes (previamente invitados).
+     *
+     * @return Lista de ausentes.
+     */
+    public List<Persona> getAusencias(){
+        List<Persona> ausencias = new ArrayList<>();
+        List<Persona> personasInvitadas = new ArrayList<>();
+
+      //Se añaden todas las personas invitadas sin repetir.
+        for (Invitacion invitacion : this.invitaciones) {
+            Invitable invitado = invitacion.getInvitado();
+
+            if (invitado instanceof Persona persona) {
+                if (!personasInvitadas.contains(persona)) {
+                    personasInvitadas.add(persona);
+                }
+            } else if (invitado instanceof Departamento departamento) {
+                for (Empleado empleadoInvitado : departamento.getEmpleados()) {
+                    if (!personasInvitadas.contains(empleadoInvitado)) {
+                        personasInvitadas.add(empleadoInvitado);
+                    }
+                }
+            }
+        }//Ahora se añaden a ausencias los que no asistieron.
+        for (Persona personaInvitada : personasInvitadas){
+            boolean asistio = false;
+            //Buscamos si el invitado asistio.
+            for (Asistencia asistencia : this.asistencias) {
+                if (asistencia.getAsistente().equals(personaInvitada)){
+                    asistio = true;
+                    break; //Se encontró, dejamos de buscar.
+                }
+            }//Si no estaba, es ausencia.
+            if(!asistio){
+                ausencias.add(personaInvitada);
+            }
+        }
+
+        return ausencias; //Lista de personas ausentes.
+    }
+
+    /**
      * Metodo que entrega el porcentaje de asistencia de la reunión.
      *
      * @return Porcentaje de asistencia (en decimal).
      */
     public float obtenerPorcentajeAsistencia() {
-        int invitados = 0;
-        for (Invitacion invitacion: this.invitaciones){
-            if (invitacion.getInvitado() instanceof Departamento departamento){
-                invitados += departamento.getCantidadEmpleados();
-            }
-            else{
-                invitados += 1;
-            }
-        }
-        return (float) this.asistencias.size() / invitados; //Porcentaje en decimal.
+        int totalInvitados = this.asistencias.size() + this.getAusencias().size();
+        return (float) this.asistencias.size() / totalInvitados; //Porcentaje en decimal.
     }
 
     /**
