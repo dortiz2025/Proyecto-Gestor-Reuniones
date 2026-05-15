@@ -20,3 +20,8 @@ Además, el polimorfismo permite hacer listas de "personas" dentro del proyecto.
 
 
 - La relación Empleado-Asistencia ahora es Persona-Asistencia para incluir a InvitadoExterno.
+
+
+- Se agrega atributo horaLlegada a Asistencia y se elimina el análogo de clase Retraso. 
+  La clase Retraso se mantiene, pero solo para fines de clasificación.
+  Esto tiene sentido, ya que se podría querer saber a qué hora llegó cada persona y no solo los atrasados.
