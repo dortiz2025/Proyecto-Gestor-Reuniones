@@ -52,14 +52,22 @@ public abstract class Reunion {
      * @param invitado La entidad que será invitada.
      */
     public void invitarParticipante(Invitable invitado) {
-        //Instante en que se está enviando
-        Instant horaDeEnvio = Instant.now();
-        //Se crea la invitación
-        Invitacion nuevaInvitacion = new Invitacion(horaDeEnvio, invitado);
-        //Se guarda en la lista de invitaciones para tener registro
-        this.invitaciones.add(nuevaInvitacion);
-        //Se invita a la entidad
-        invitado.invitar();
+        if (invitado instanceof Departamento departamento){
+            //Se invita a cada empleado por separado
+            for (Empleado empleado : departamento.getEmpleados()) {
+                invitarParticipante(empleado);
+            }
+        }
+        else {
+            //Instante en que se está enviando
+            Instant horaDeEnvio = Instant.now();
+            //Se crea la invitación
+            Invitacion nuevaInvitacion = new Invitacion(horaDeEnvio, invitado);
+            //Se guarda en la lista de invitaciones para tener registro
+            this.invitaciones.add(nuevaInvitacion);
+            //Se invita a la entidad
+            invitado.invitar();
+        }
     }
 
     public List obtenerAsistencias() {

@@ -50,10 +50,20 @@ public class Departamento implements Invitable {
 
     /**
      * Metodo que agrega un empleado a la lista de empleados del departamento.
+     *
      * @param empleado Empleado que será agregado.
      */
     public void agregarEmpleado(Empleado empleado) {
         this.empleados.add(empleado);
+    }
+
+    /**
+     * Getter de empleados.
+     *
+     * @return Entrega la lista de empleados del departamento.
+     */
+    public List<Empleado> getEmpleados() {
+        return this.empleados;
     }
 
     /**
