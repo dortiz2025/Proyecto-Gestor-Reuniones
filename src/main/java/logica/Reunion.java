@@ -123,7 +123,8 @@ public abstract class Reunion {
     }
 
     /**
-     * Metodo que entrega una lista de ausentes (previamente invitados).
+     * Metodo que entrega una lista de ausentes
+     * a una reunión (previamente invitados).
      *
      * @return Lista de ausentes.
      */
@@ -151,7 +152,8 @@ public abstract class Reunion {
             boolean asistio = false;
             //Buscamos si el invitado asistio.
             for (Asistencia asistencia : this.asistencias) {
-                if (asistencia.getAsistente().equals(personaInvitada)){
+                Persona asistente = (Persona) asistencia.getAsistente();
+                if (asistente.equals(personaInvitada)){
                     asistio = true;
                     break; //Se encontró, dejamos de buscar.
                 }
