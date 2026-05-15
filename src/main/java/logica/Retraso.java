@@ -7,8 +7,34 @@ import java.time.Instant;
  * Hereda de Asistencia.
  */
 public class Retraso extends Asistencia {
+    private Instant horaLlegada;
 
+    /**
+     * Se crea una asistencia atrasada.
+     *
+     * @param persona Referencia de la persona.
+     * @param horaLlegada Hora a la que llegó.
+     */
     public Retraso(Persona persona, Instant horaLlegada) {
-        super(persona, horaLlegada);
+        super(persona);
+        this.horaLlegada = horaLlegada;
+    }
+
+    /**
+     * Getter de horaLlegada.
+     *
+     * @return Hora de llegada a la reunión.
+     */
+    public Instant getHoraLlegada() {
+        return this.horaLlegada;
+    }
+
+    /**
+     * Setter de horaLlegada.
+     *
+     * @param horaLlegada Nueva hora de llegada a la reunión.
+     */
+    public void setHoraLlegada(Instant horaLlegada) {
+        this.horaLlegada = horaLlegada;
     }
 }

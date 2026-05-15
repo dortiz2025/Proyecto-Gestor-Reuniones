@@ -7,17 +7,14 @@ import java.time.Instant;
  */
 public class Asistencia {
     private Persona asistente;
-    private Instant horaLlegada;
 
     /**
      * Crea una asistencia.
      *
      * @param asistente Referencia de la persona asistente.
-     * @param horaLlegada Hora en que la persona llegó a la reunión.
      */
-    public Asistencia(Persona asistente, Instant horaLlegada) {
+    public Asistencia(Persona asistente) {
         this.asistente = asistente;
-        this.horaLlegada = horaLlegada;
     }
 
     /**
@@ -36,23 +33,5 @@ public class Asistencia {
      */
     public void setAsistente(Persona asistente) {
         this.asistente = asistente;
-    }
-
-    /**
-     * Getter de horaLlegada.
-     *
-     * @return Hora de llegada a la reunión.
-     */
-    public Instant getHoraLlegada() {
-        return this.horaLlegada;
-    }
-
-    /**
-     * Setter de horaLlegada.
-     *
-     * @param horaLlegada Nueva hora de llegada a la reunión.
-     */
-    public void setHoraLlegada(Instant horaLlegada) {
-        this.horaLlegada = horaLlegada;
     }
 }
