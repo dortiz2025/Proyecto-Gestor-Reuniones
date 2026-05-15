@@ -16,8 +16,7 @@ Esto con el objetivo de reutilizar código implementando el concepto de herencia
 Además, el polimorfismo permite hacer listas de "personas" dentro del proyecto.  
 
 
-- Persona implementa la interfaz Invitable. Evita ruido visual innecesario en el UML.
+- Persona implementa la interfaz Invitable. Tanto Empleado como InvitadoExterno pueden ser invitados.
 
 
-- La relación Empleado-Asistencia ahora es Persona-Asistencia y es una relación de Composición.  
-  Esto tiene sentido porque una lista de asistencia no existe sin personas.
+- La relación Empleado-Asistencia ahora es Persona-Asistencia para incluir a InvitadoExterno.
