@@ -54,7 +54,9 @@ public abstract class Reunion {
     public void invitarParticipante(Invitable invitado) {
         //Caso en que el invitado es un Departamento
         if (invitado instanceof Departamento departamento){
-            //Se invita a cada empleado por separado
+            //Se notifica al departamento en general que ha sido invitado...
+            departamento.invitar();
+            //Se invita también a cada empleado por separado
             for (Empleado empleado : departamento.getEmpleados()) {
                 invitarParticipante(empleado);
             }
