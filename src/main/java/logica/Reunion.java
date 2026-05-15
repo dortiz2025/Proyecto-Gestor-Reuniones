@@ -2,9 +2,10 @@ package logica;
 
 import enumeraciones.*;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDate;
+import java.time.Duration;  //Duración (con instantes)
+import java.time.Instant;   //Instantes exactos
+import java.time.LocalDate; //Fecha simple
+import java.time.LocalTime; //Hora simple
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public abstract class Reunion {
     private TipoReunion tipoReunion;
     private LocalDate fecha;
-    private Instant horaPrevista;
+    private LocalTime horaPrevista;
     private Duration duracionPrevista;
     private Empleado organizador;
 
@@ -34,7 +35,7 @@ public abstract class Reunion {
      * @param duracionPrevista Duración prevista de la reunión
      * @param organizador Organizador de la reunión (debe ser un empleado).
      */
-    public Reunion(TipoReunion tipoReunion, LocalDate fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador) {
+    public Reunion(TipoReunion tipoReunion, LocalDate fecha, LocalTime horaPrevista, Duration duracionPrevista, Empleado organizador) {
         this.tipoReunion = tipoReunion;
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -74,14 +75,12 @@ public abstract class Reunion {
 
     /**
      * Metodo que registra la asistencia de una persona a la reunión.
-     * Aquí horaLlegada se compara con horaPrevista y no con horaInicio.
-     * En la vida real se debe ser puntual (hora acordada).
      *
      * @param asistente Persona que asiste a la reunión.
      * @param horaLlegada Hora en la que llega el asistente.
      */
     public void addAsistencia(Persona asistente, Instant horaLlegada){
-        if (horaLlegada.compareTo(horaPrevista) <= 0 ) {
+        if (this.horaInicio == null || horaLlegada.compareTo(this.horaInicio) <= 0) {
             asistencias.add(new Asistencia(asistente));
         }
         else {
@@ -114,26 +113,57 @@ public abstract class Reunion {
         return retrasos;
     }
 
+    /**
+     * Metodo que entrega la cantidad total de asistencia a la reunión.
+     *
+     * @return Cantidad total de asistencia a la reunion.
+     */
     public int obtenerTotalAsistencia() {
         return this.asistencias.size();
     }
 
+    /**
+     * Metodo que entrega el porcentaje de asistencia de la reunión.
+     *
+     * @return Porcentaje de asistencia (en decimal).
+     */
     public float obtenerPorcentajeAsistencia() {
-        return 0;
+        int invitados = 0;
+        for (Invitacion invitacion: this.invitaciones){
+            if (invitacion.getInvitado() instanceof Departamento departamento){
+                invitados += departamento.getCantidadEmpleados();
+            }
+            else{
+                invitados += 1;
+            }
+        }
+        return (float) this.asistencias.size() / invitados; //Porcentaje en decimal.
     }
 
+    /**
+     * Metodo para iniciar la reunión.
+     */
     public void iniciar(){
         System.out.println("Iniciando Reunion");
         this.horaInicio = Instant.now();
     }
 
+    /**
+     * Metodo para finalizar la reunión.
+     */
     public void finalizar(){
         System.out.println("Finalizando Reunion");
         this.horaFin = Instant.now();
     }
 
+    /**
+     * Metodo que entrega la duración real de la reunión.
+     *
+     * @return Entrega la duración de la reunión en minutos.
+     */
     public float calcularTiempoReal() {
-        return 0;
+        Duration duracionReal = Duration.between(this.horaInicio, this.horaFin);
+        return (float) duracionReal.toMinutes(); //Duración en minutos.
     }
 
 }
