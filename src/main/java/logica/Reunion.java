@@ -47,45 +47,75 @@ public abstract class Reunion {
     }
 
     /**
-     * Genera una invitación para un participante y la añade a la reunión.
+     * Metodo que invita a una entidad a la reunión.
+     * La invitación se registra en la lista de invitaciones.
      *
      * @param invitado La entidad que será invitada.
      */
     public void invitarParticipante(Invitable invitado) {
-        //Caso en que el invitado es un Departamento
-        if (invitado instanceof Departamento departamento){
-            //Se notifica al departamento en general que ha sido invitado...
-            departamento.invitar();
-            //Se invita también a cada empleado por separado
-            for (Empleado empleado : departamento.getEmpleados()) {
-                invitarParticipante(empleado);
-            }
-        }//Caso en el que el invitado es una Persona (Empleado/InvitadoExterno)
+        //Instante en que se está enviando
+        Instant horaDeEnvio = Instant.now();
+        //Se crea la invitación
+        Invitacion nuevaInvitacion = new Invitacion(horaDeEnvio, invitado);
+        //Se guarda en la lista de invitaciones para tener registro
+        this.invitaciones.add(nuevaInvitacion);
+        //Se invita a la entidad
+        invitado.invitar();
+    }
+
+    /**
+     * Getter de invitaciones.
+     *
+     * @return Entrega la lista de invitaciones.
+     */
+    public List obtenerInvitaciones() {
+        return this.invitaciones;
+    }
+
+    /**
+     * Metodo que registra la asistencia de una persona a la reunión.
+     * Aquí horaLlegada se compara con horaPrevista y no con horaInicio.
+     * En la vida real se debe ser puntual (hora acordada).
+     *
+     * @param asistente Persona que asiste a la reunión.
+     * @param horaLlegada Hora en la que llega el asistente.
+     */
+    public void addAsistencia(Persona asistente, Instant horaLlegada){
+        if (horaLlegada.compareTo(horaPrevista) <= 0 ) {
+            asistencias.add(new Asistencia(asistente));
+        }
         else {
-            //Instante en que se está enviando
-            Instant horaDeEnvio = Instant.now();
-            //Se crea la invitación
-            Invitacion nuevaInvitacion = new Invitacion(horaDeEnvio, invitado);
-            //Se guarda en la lista de invitaciones para tener registro
-            this.invitaciones.add(nuevaInvitacion);
-            //Se invita a la entidad
-            invitado.invitar();
+            asistencias.add(new Retraso(asistente, horaLlegada));
         }
     }
 
+    /**
+     * Getter de asistencias.
+     *
+     * @return Entrega la lista de asistencias.
+     */
     public List obtenerAsistencias() {
         return asistencias;
     }
 
-    public List obtenerInvitaciones() {
-        return null;
+    /**
+     * Getter de retrasos (También es Asistencia)
+     * Se obtiene de la lista de asistencias.
+     *
+     * @return Entrega una lista de asistentes atrasados.
+     */
+    public List obtenerRetrasos() {
+        List<Retraso> retrasos = new ArrayList<>();
+        for (Asistencia asistencia : asistencias){
+            if(asistencia instanceof Retraso){
+            retrasos.add((Retraso) asistencia);
+            }
+        }
+        return retrasos;
     }
 
-    public List obtenerRetrasos() {
-        return null;
-    }
     public int obtenerTotalAsistencia() {
-        return 0;
+        return this.asistencias.size();
     }
 
     public float obtenerPorcentajeAsistencia() {
