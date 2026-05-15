@@ -4,9 +4,8 @@ package logica;
  * Clase que representa un empleado de una empresa invitado a una reunión.
  */
 public class Empleado extends Persona{
-
     private String id;
-    private Departamento departamento;
+
     /**
      * Constructor de Empleado.
      *
@@ -14,13 +13,11 @@ public class Empleado extends Persona{
      * @param apellidos Asigna los apellidos del empleado.
      * @param correo Asigna el correo del empleado.
      * @param id Asigna el ID del empleado.
-     * @param departamento Asigna el departamento del empleado.
      */
-    public Empleado(String nombre, String apellidos, String correo, String id, Departamento departamento) {
+    public Empleado(String nombre, String apellidos, String correo, String id) {
 
         super(nombre, apellidos, correo);
         this.id = id;
-
     }
 
     /**
