@@ -55,7 +55,7 @@ public class ReunionPresencial extends Reunion{
     public String toString() {
         return "ReunionPresencial{" +
                 super.toString() +
-                "sala: '" + sala + "'" +
+                ", sala: '" + sala + "'" +
                 '}';
     }
 }

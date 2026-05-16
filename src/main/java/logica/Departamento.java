@@ -86,6 +86,6 @@ public class Departamento implements Invitable {
         return "Departamento{" +
                 "nombre: '" + this.nombre + "'" +
                 ", empleados: '" + this.getCantidadEmpleados() + "'" +
-                "'}";
+                "}";
     }
 }
