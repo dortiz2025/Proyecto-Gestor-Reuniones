@@ -89,7 +89,8 @@ public abstract class Persona implements Invitable {
     }
 
     /**
-     * Override del hashCode como buena práctica.
+     * Override del hashCode como buena práctica
+     * debido al Override de equals.
      * @return Identificador.
      */
     @Override

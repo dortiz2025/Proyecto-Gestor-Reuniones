@@ -22,27 +22,11 @@ public class Departamento implements Invitable {
     }
 
     /**
-     * Setter del nombre del departamento.
-     * @param nombre Nuevo nombre del departamento.
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
      * Getter del nombre del departamento.
      * @return nombre del departamento
      */
     public String getNombre() {
         return this.nombre;
-    }
-
-    /**
-     * Entrega la cantidad de empleados del departamento.
-     * @return Cantidad de empleados del departamento.
-     */
-    public int getCantidadEmpleados() {
-        return this.empleados.size();
     }
 
     /**
@@ -62,6 +46,14 @@ public class Departamento implements Invitable {
     }
 
     /**
+     * Entrega la cantidad de empleados del departamento.
+     * @return Cantidad de empleados del departamento.
+     */
+    public int getCantidadEmpleados() {
+        return this.empleados.size();
+    }
+
+    /**
      * Metodo que notifica que el departamento ha sido invitado a una reunión.
      */
     @Override
@@ -69,6 +61,29 @@ public class Departamento implements Invitable {
         for (Empleado empleado : this.empleados) {
             empleado.invitar(); //Se invita a cada empleado.
         }
+    }
+
+    /**
+     * Responde si una persona pertenece al departamento.
+     * @param persona Persona por la que se consulta.
+     * @return True si pertenece, False si no.
+     */
+    @Override
+    public boolean incluyeA(Persona persona){
+        if (persona instanceof Empleado) {
+            return this.empleados.contains((Empleado) persona);
+        }
+        return false;
+    }
+
+    /**
+     * Entrega la lista de personas
+     * que pertenecen al departamento.
+     * @return Lista de empleados.
+     */
+    @Override
+    public List<Persona> obtenerPersonasRepresentadas(){
+        return new ArrayList<>(this.empleados);
     }
 
     /**
