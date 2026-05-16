@@ -20,7 +20,9 @@ public abstract class Persona implements Invitable{
     public Persona(String nombre, String apellidos, String correo){
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.correo = correo;
+        if (correo.contains("@")) {
+            this.correo = correo;
+        }
     }
 
     /**

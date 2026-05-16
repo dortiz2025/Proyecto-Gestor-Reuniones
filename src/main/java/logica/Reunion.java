@@ -274,9 +274,9 @@ public abstract class Reunion {
     @Override
     public String toString() {
         return  "tipoReunion: '" + tipoReunion + "'" +
-                "fecha: '" + fecha + "'" +
-                "horaPrevista: '" + horaPrevista + "'" +
-                "duracionPrevista: '" + duracionPrevista + "'" +
-                "organizador: '" + organizador + "'";
+                ", fecha: '" + fecha + "'" +
+                ", horaPrevista: '" + horaPrevista + "'" +
+                ", duracionPrevista: '" + duracionPrevista + "'" +
+                ", organizador: '" + organizador + "'";
     }
 }
