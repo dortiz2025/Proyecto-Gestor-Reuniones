@@ -130,6 +130,11 @@ public abstract class Reunion {
         if (this.horaFin != null) {
             throw new ReunionFinalizadaException("Reunión Finalizada.");
         }
+        for(Asistencia asistencia : this.asistencias) {
+            if(asistencia.getAsistente().equals(asistente)) {
+                throw new VerificarAsistenteException("La persona " + asistente.getNombre() + " ya ha registrado su asistencia.");
+            }
+        }
         for (Invitacion invitacion : this.invitaciones) {
             if (invitacion.getInvitado().incluyeA(asistente)){
                 estaInvitado = true;
@@ -247,13 +252,14 @@ public abstract class Reunion {
      * @param horaFin Hora en la que finalizó la reunión.
      */
     public void finalizar(Instant horaFin) throws ReunionFinalizadaException {
-        //Si la hora de fin tiene un valor distinto de null, lanzamos error.
-        if (this.horaFin != null) {
+        if (this.horaFin != null) { //Si la reunion ya finalizó.
             throw new ReunionFinalizadaException("Reunión ya terminada, no es posible volver a finalizarla.");
-        }
-        //Si además la hora de inicio es null (no ha comenzado), lanzamos error.
+        }//Si la reunión no ha comenzado.
         if (this.horaInicio == null){
-            throw new ReunionFinalizadaException("No es posible terminar una reunión que no ha comenzado.");
+            throw new ReunionNoIniciadaException("No es posible terminar la reunión porque no ha comenzado.");
+        }//Si la horaFin no es coherente con la horaInicio.
+        if (horaFin.isBefore(this.horaInicio)) {
+            throw new IncoherenciaDuracionReunionException("La hora de fin no puede ser anterior a la hora de inicio.");
         }
         System.out.println("Finalizando Reunion");
         this.horaFin = horaFin;
@@ -264,6 +270,9 @@ public abstract class Reunion {
      * @return Duración de la reunión en minutos.
      */
     public float calcularTiempoReal() {
+        if (this.horaInicio == null || this.horaFin == null) {
+            return 0.0f;
+        }
         Duration duracionReal = Duration.between(this.horaInicio, this.horaFin);
         return (float) duracionReal.toMinutes(); //Duración en minutos.
     }
