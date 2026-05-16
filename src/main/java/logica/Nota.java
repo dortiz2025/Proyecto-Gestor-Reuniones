@@ -30,6 +30,7 @@ public class Nota {
         return contenido;
     }
 
+    //Conservamos este setter porque una nota podría ser editada.
     /**
      * Setter de contenido.
      * En caso de querer modificar anotaciones.
@@ -47,15 +48,6 @@ public class Nota {
      */
     public Instant getHoraNota() {
         return horaNota;
-    }
-
-    /**
-     * Setter de nota.
-     *
-     * @param horaNota Nueva hora en la que se escribió la nota.
-     */
-    public void setHoraNota(Instant horaNota) {
-        this.horaNota = horaNota;
     }
 
     /**

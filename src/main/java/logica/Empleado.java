@@ -23,19 +23,11 @@ public class Empleado extends Persona{
     }
 
     /**
-     * Setter de ID
-     * @param id Id del empleado
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
      * Getter del id del empleado
      * @return id del empleado
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -63,9 +55,7 @@ public class Empleado extends Persona{
      */
     @Override
     public List<Persona> obtenerPersonasRepresentadas(){
-        List<Persona> lista = new ArrayList<>();
-        lista.add(this);
-        return lista;
+        return List.of(this);
     }
 
     /**

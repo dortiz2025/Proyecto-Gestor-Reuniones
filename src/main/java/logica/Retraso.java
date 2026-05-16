@@ -31,14 +31,6 @@ public class Retraso extends Asistencia {
         return this.horaLlegada;
     }
 
-    /**
-     * Setter de horaLlegada.
-     *
-     * @param horaLlegada Nueva hora de llegada a la reunión.
-     */
-    public void setHoraLlegada(Instant horaLlegada) {
-        this.horaLlegada = horaLlegada;
-    }
 
     /**
      * Entrega información representativa de Retraso.

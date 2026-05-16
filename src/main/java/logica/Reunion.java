@@ -117,7 +117,8 @@ public abstract class Reunion {
      * @return Entrega la lista de invitaciones.
      */
     public List<Invitacion> getInvitaciones() {
-        return this.invitaciones;
+        //Encapsulamiento... evitamos que se edite desde fuera.
+        return java.util.Collections.unmodifiableList(this.invitaciones);
     }
 
     /**
@@ -155,7 +156,8 @@ public abstract class Reunion {
      * @return Entrega la lista de asistencias.
      */
     public List<Asistencia> getAsistencias() {
-        return asistencias;
+        //Encapsulamiento... evitamos que se edite desde fuera.
+        return java.util.Collections.unmodifiableList(this.asistencias);
     }
 
     /**
@@ -168,7 +170,7 @@ public abstract class Reunion {
         for (Asistencia asistencia : this.asistencias){
             if(asistencia instanceof Retraso) retrasos.add((Retraso) asistencia);
         }
-        return retrasos;
+        return java.util.Collections.unmodifiableList(retrasos);
     }
 
     /**
@@ -206,7 +208,7 @@ public abstract class Reunion {
                 ausencias.add(invitado);
             }
         }
-        return ausencias; //Lista de personas ausentes.
+        return java.util.Collections.unmodifiableList(ausencias); //Lista de personas ausentes.
     }
 
     /**
@@ -231,7 +233,7 @@ public abstract class Reunion {
      * @return Lista de notas de la reunión.
      */
     public List<Nota> getNotas() {
-        return notas;
+        return java.util.Collections.unmodifiableList(this.notas);
     }
 
     /**

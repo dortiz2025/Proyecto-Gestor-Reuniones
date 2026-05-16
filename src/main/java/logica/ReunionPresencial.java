@@ -38,7 +38,7 @@ public class ReunionPresencial extends Reunion{
     }
 
     /**
-     * Setter de sala.
+     * Setter de sala (cambio se sala).
      *
      * @param sala Nueva sala en la que se hará la reunión.
      */

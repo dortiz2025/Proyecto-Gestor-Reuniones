@@ -44,9 +44,7 @@ public class InvitadoExterno extends Persona{
      */
     @Override
     public List<Persona> obtenerPersonasRepresentadas(){
-        List<Persona> lista = new ArrayList<>();
-        lista.add(this);
-        return lista;
+        return List.of(this);
     }
 
     /**

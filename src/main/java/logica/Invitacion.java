@@ -35,30 +35,12 @@ public class Invitacion {
     }
 
     /**
-     * Setter de la hora de envío.
-     *
-     * @param horaEnvio Nueva hora de envío de la invitación.
-     */
-    public void setHoraEnvio(Instant horaEnvio){
-        this.horaEnvio = horaEnvio;
-    }
-
-    /**
      * Getter del invitado.
      *
      * @return Entrega la referencia de la entidad invitada.
      */
     public Invitable getInvitado(){
         return invitado;
-    }
-
-    /**
-     * Setter del invitado.
-     *
-     * @param invitado Nueva entidad invitada.
-     */
-    public void setInvitado(Invitable invitado){
-        this.invitado = invitado;
     }
 
     /**

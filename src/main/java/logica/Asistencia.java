@@ -27,15 +27,6 @@ public class Asistencia {
     }
 
     /**
-     * Setter de asistente.
-     *
-     * @param asistente Referencia de la persona que asiste a la reunión.
-     */
-    public void setAsistente(Persona asistente) {
-        this.asistente = asistente;
-    }
-
-    /**
      * Entrega información representativa de Asistencia.
      *
      * @return Información de Asistencia.

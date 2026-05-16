@@ -42,7 +42,7 @@ public class Departamento implements Invitable {
      * @return Entrega la lista de empleados del departamento.
      */
     public List<Empleado> getEmpleados() {
-        return this.empleados;
+        return java.util.Collections.unmodifiableList(this.empleados);
     }
 
     /**

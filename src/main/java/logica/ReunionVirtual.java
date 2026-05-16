@@ -38,7 +38,7 @@ public class ReunionVirtual extends Reunion{
     }
 
     /**
-     * Setter de enlace.
+     * Setter de enlace (cambio de enlace).
      *
      * @param enlace Nuevo enlace de la reunión virtual.
      */

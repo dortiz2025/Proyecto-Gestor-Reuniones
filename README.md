@@ -54,3 +54,7 @@ ahora es Persona-Asistencia para incluir a InvitadoExterno.
   optimizada que entrega java con StringBuilder y append().
   Esto dado que los string en sí no son modificables y 
   usar "+" tantas veces muestra un diseño para nada eficiente.
+
+
+- Se optó por imprimir listas con métodos que permitan mantener el encapsulamiento.
+  Se usó List.of() y java.util.Collections.unmodifiableList().
