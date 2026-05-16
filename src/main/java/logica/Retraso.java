@@ -47,7 +47,7 @@ public class Retraso extends Asistencia {
     public String toString() {
         return "Retraso{" +
                 "asistente: '" + super.getAsistente() + "'" +
-                "horaLlegada: '" + horaLlegada + "'" +
+                ", horaLlegada: '" + horaLlegada + "'" +
                 '}';
     }
 }
