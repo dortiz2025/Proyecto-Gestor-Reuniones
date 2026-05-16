@@ -1,6 +1,8 @@
 package logica;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Clase que representa una nota que se puede tomar en una reunión.
@@ -63,9 +65,13 @@ public class Nota {
      */
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                .withZone(ZoneId.systemDefault());
+        String horaNotaF = //Formato amigable
+                formatter.format(this.horaNota);
         return  "Nota{" +
                 "contenido: '" + contenido + "'" +
-                ", horaNota: '" + horaNota + "'" +
+                ", horaNota: '" + horaNotaF + "'" +
                 '}';
     }
 }

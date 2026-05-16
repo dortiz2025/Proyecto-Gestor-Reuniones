@@ -1,6 +1,9 @@
 package logica;
 
+
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Clase que representa una invitación a una reunión.
@@ -64,8 +67,12 @@ public class Invitacion {
      */
     @Override
     public String toString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                .withZone(ZoneId.systemDefault());
+        String horaEnvioF = //Formato amigable
+                formatter.format(this.horaEnvio);
         return "Invitación {" +
-                "Hora de envío: '" + this.horaEnvio + "'" +
+                "Hora de envío: '" + horaEnvioF + "'" +
                 ", Invitado: '" + this.invitado + "'" +
                 '}';
     }
