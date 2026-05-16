@@ -29,7 +29,7 @@ Además, el polimorfismo permite hacer listas de "personas" dentro del proyecto.
 
 
 - Para mantener la encapsulación, se omitieron los setters 
-  de algunos atributos de reunion críticos.
+  de algunos atributos en las clases. De otra manera se podrían modificar arbitrariamente (no queremos eso).
   La parcial modificación de algunos atributos se realiza únicamente a través de los adders.
 
 - En clase reunión se añadieron parámetros para los métodos de iniciar y finalizar.

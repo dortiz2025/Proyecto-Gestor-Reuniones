@@ -2,7 +2,6 @@ package logica;
 
 
 import interfaces.Invitable;
-
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;

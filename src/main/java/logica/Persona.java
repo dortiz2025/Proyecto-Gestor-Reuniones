@@ -2,7 +2,6 @@ package logica;
 
 import excepciones.CorreoInvalidoException;
 import interfaces.Invitable;
-
 import java.util.Objects;
 
 /**
@@ -14,23 +13,20 @@ public abstract class Persona implements Invitable {
     private String correo;
     /**
      * Constructor de Persona.
-     *
      * @param nombre Asigna el nombre de la persona.
      * @param apellidos Asigna los apellidos de la persona.
      * @param correo Asigna el correo de la persona.
      */
 
-    public Persona(String nombre, String apellidos, String correo){
+    public Persona(String nombre, String apellidos, String correo) throws CorreoInvalidoException {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        if (correo.contains("@")) {
-            this.correo = correo;
-        }
+        if (correo.contains("@")) this.correo = correo;
+        else throw new CorreoInvalidoException("Correo no válido.");
     }
 
     /**
      * Getter de nombre.
-     *
      * @return Retorna el nombre de la persona.
      */
     public String getNombre(){
@@ -39,7 +35,6 @@ public abstract class Persona implements Invitable {
 
     /**
      * Setter de nombre.
-     *
      * @param nombre Nuevo nombre de la persona.
      */
     public void setNombre(String nombre) {
@@ -48,7 +43,6 @@ public abstract class Persona implements Invitable {
 
     /**
      * Getter de apellidos.
-     *
      * @return Retorna los apellidos de la persona.
      */
     public String getApellidos() {
@@ -57,7 +51,6 @@ public abstract class Persona implements Invitable {
 
     /**
      * Setter de apellidos.
-     *
      * @param apellidos Nuevos apellidos de la persona.
      */
     public void setApellidos(String apellidos) {
@@ -66,7 +59,6 @@ public abstract class Persona implements Invitable {
 
     /**
      * Getter de correo.
-     *
      * @return Retorna el correo de la persona.
      */
     public String getCorreo() {
@@ -75,20 +67,15 @@ public abstract class Persona implements Invitable {
 
     /**
      * Setter de correo.
-     *
      * @param correo Nuevo correo de la persona.
      */
     public void setCorreo(String correo) throws CorreoInvalidoException {
-        if (!correo.contains("@")) {
-            throw new CorreoInvalidoException("Correo no válido.");
-        }
-        this.correo = correo;
-
+        if (correo.contains("@")) this.correo = correo;
+        else throw new CorreoInvalidoException("Correo no válido.");
     }
 
     /**
      * Sobrescritura de equals.
-     *
      * @param objeto Referencia del objeto con el que comparamos.
      * @return Valor booleano que depende de la igualdad de los objetos.
      */
@@ -103,7 +90,6 @@ public abstract class Persona implements Invitable {
 
     /**
      * Override del hashCode como buena práctica.
-     *
      * @return Identificador.
      */
     @Override
@@ -113,7 +99,6 @@ public abstract class Persona implements Invitable {
 
     /**
      * Entrega información representativa de Persona.
-     *
      * @return Información básica de la persona.
      */
     @Override
