@@ -47,15 +47,15 @@ public class Empleado extends Persona{
     }
 
     /**
-     * Metodo que entrega información sobre Empleado.
+     * Entrega información representativa de Empleado.
      *
      * @return Información del empleado.
      */
     @Override
     public String toString() {
         return "Empleado{" +
+                ", id: '" + id + "'" +
                 super.toString() +
-                ", id: '" + id +
-                "'}";
+                "}";
     }
 }

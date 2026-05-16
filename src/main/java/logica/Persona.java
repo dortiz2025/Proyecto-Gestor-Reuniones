@@ -108,9 +108,9 @@ public abstract class Persona implements Invitable{
     }
 
     /**
-     * Metodo que entrega información de Persona.
+     * Entrega información representativa de Persona.
      *
-     * @return Información de la persona.
+     * @return Información básica de la persona.
      */
     @Override
     public String toString() {
