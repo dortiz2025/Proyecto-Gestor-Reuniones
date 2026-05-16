@@ -31,8 +31,8 @@ public class InvitadoExterno extends Persona{
      */
     @Override
     public String toString() {
-        return "InvitadoExterno{" +
-                super.toString() +
+        return "InvitadoExterno {\n" +
+                "  " + super.toString().replace("\n, ", "\n  ") + "\n" +
                 "}";
     }
 }

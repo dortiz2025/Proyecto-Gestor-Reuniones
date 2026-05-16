@@ -14,7 +14,6 @@ public class Departamento implements Invitable {
 
     /**
      * Constructor de Departamento.
-     *
      * @param nombre asigna nombre al departamento
      */
     public Departamento(String nombre) {
@@ -24,7 +23,6 @@ public class Departamento implements Invitable {
 
     /**
      * Setter del nombre del departamento.
-     *
      * @param nombre Nuevo nombre del departamento.
      */
     public void setNombre(String nombre) {
@@ -33,7 +31,6 @@ public class Departamento implements Invitable {
 
     /**
      * Getter del nombre del departamento.
-     *
      * @return nombre del departamento
      */
     public String getNombre() {
@@ -41,8 +38,7 @@ public class Departamento implements Invitable {
     }
 
     /**
-     * Metodo que entrega la cantidad de empleados del departamento.
-     *
+     * Entrega la cantidad de empleados del departamento.
      * @return Cantidad de empleados del departamento.
      */
     public int getCantidadEmpleados() {
@@ -50,8 +46,7 @@ public class Departamento implements Invitable {
     }
 
     /**
-     * Metodo que agrega un empleado a la lista de empleados del departamento.
-     *
+     * Agrega un empleado a la lista de empleados del departamento.
      * @param empleado Empleado que será agregado.
      */
     public void agregarEmpleado(Empleado empleado) {
@@ -60,7 +55,6 @@ public class Departamento implements Invitable {
 
     /**
      * Getter de empleados.
-     *
      * @return Entrega la lista de empleados del departamento.
      */
     public List<Empleado> getEmpleados() {
@@ -79,14 +73,29 @@ public class Departamento implements Invitable {
 
     /**
      * Entrega información representativa de Departamento.
-     *
      * @return Información del departamento.
      */
     @Override
     public String toString() {
-        return "Departamento{" +
-                "nombre: '" + this.nombre + "'" +
-                ", empleados: '" + this.getCantidadEmpleados() + "'" +
-                "}";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Departamento {\n");
+        sb.append("  nombre: '").append(this.nombre).append("',\n");
+        sb.append("  cantidadEmpleados: ").append(this.getCantidadEmpleados()).append(",\n");
+
+        sb.append("  empleados: [");
+        // Verificamos si la lista está vacía o no.
+        if (this.empleados.isEmpty()) {
+            sb.append("]\n");
+        } else {
+            sb.append("\n");
+            for (Empleado emp : this.empleados) {
+                sb.append("    ").append(emp.toString().replace("\n", "\n    ")).append(",\n");
+            }
+            sb.append("  ]\n");
+        }
+        sb.append("}");
+
+        return sb.toString();
     }
 }

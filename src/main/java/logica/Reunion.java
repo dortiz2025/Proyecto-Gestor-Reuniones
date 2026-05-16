@@ -2,14 +2,12 @@ package logica;
 
 import enumeraciones.*;
 import excepciones.*;
-import informe.Informe;
-import interfaces.Invitable;
-import java.time.Duration;  //Duración (con instantes)
-import java.time.Instant;   //Instantes exactos
-import java.time.LocalDate; //Fecha simple
-import java.time.LocalTime; //Hora simple
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import informe.Informe;
+import interfaces.Invitable;
 
 /**
  * Clase que representa una reunión con su respectiva información.
@@ -293,15 +291,71 @@ public abstract class Reunion {
     }
 
     /**
-     * Entrega información representativa de la reunión.
+     * Entrega información de la reunión.
      * @return Información de la reunión.
      */
     @Override
     public String toString() {
-        return  "tipoReunion: '" + tipoReunion + "'" +
-                ", fecha: '" + fecha + "'" +
-                ", horaPrevista: '" + horaPrevista + "'" +
-                ", duracionPrevista: '" + duracionPrevista + "'" +
-                ", organizador: '" + organizador + "'";
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
+
+        //Manejo seguro de nulos para los Instants
+        String inicioF;
+        String finF;
+        String duracionRealF;
+        if (this.horaInicio != null) inicioF = formatter.format(this.horaInicio);
+        else inicioF = "No iniciada";
+        if (this.horaFin != null) finF = formatter.format(this.horaFin);
+        else finF = "No finalizada";
+        if (this.horaInicio != null && this.horaFin != null) duracionRealF = (int)calcularTiempoReal() + " minutos";
+        else duracionRealF = "N/A";
+
+        StringBuilder sb = new StringBuilder(); //Creamos un string modificable para optimizar la impresión.
+        sb.append("  Tipo de Reunión: '").append(this.tipoReunion).append("',\n");
+        sb.append("  Fecha: '").append(this.fecha).append("',\n");
+        sb.append("  Hora Prevista: '").append(this.horaPrevista).append("',\n");
+        sb.append("  Duración Prevista: '").append(this.duracionPrevista.toMinutes()).append(" minutos',\n");
+        sb.append("  Hora Inicio: '").append(inicioF).append("',\n");
+        sb.append("  Hora Fin: '").append(finF).append("',\n");
+        sb.append("  Duración Real: '").append(duracionRealF).append("',\n");
+
+        //Indentación para visualización amigable.
+        sb.append("  Organizador: ").append(this.organizador.toString().replace("\n", "\n  ")).append(",\n");
+
+        //Impresión de la Lista de Invitacion.
+        sb.append("  Invitaciones: [");
+        if (this.invitaciones.isEmpty()) {
+            sb.append("],\n");
+        } else {
+            sb.append("\n");
+            for (Invitacion inv : this.invitaciones) {
+                sb.append("    ").append(inv.toString().replace("\n", "\n    ")).append(",\n");
+            }
+            sb.append("  ],\n");
+        }
+        //Impresión de la Lista de Asistencia y la de Retrasos.
+        sb.append("  Asistencias: [");
+        if (this.asistencias.isEmpty()) {
+            sb.append("],\n");
+        } else {
+            sb.append("\n");
+            for (Asistencia asis : this.asistencias) {
+                sb.append("    ").append(asis.toString().replace("\n", "\n    ")).append(",\n");
+            }
+            sb.append("  ],\n");
+        }
+        // Impresión de la Lista de Notas
+        sb.append("  Notas: [");
+        if (this.notas.isEmpty()) {
+            sb.append("]\n");
+        } else {
+            sb.append("\n");
+            for (Nota nota : this.notas) {
+                sb.append("    ").append(nota.toString().replace("\n", "\n    ")).append(",\n");
+            }
+            sb.append("  ]\n");
+        }
+
+        return sb.toString();
     }
 }

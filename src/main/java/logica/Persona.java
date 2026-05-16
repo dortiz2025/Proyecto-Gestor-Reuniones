@@ -82,12 +82,10 @@ public abstract class Persona implements Invitable {
     @Override
     public boolean equals(Object objeto) {
         if (this == objeto) return true;
-        if (!(objeto instanceof Persona)) return false;
-
-        Persona otraPersona = (Persona) objeto;
-        //Comparación segura.
-        return Objects.equals(this.nombre, otraPersona.nombre) &&
-                Objects.equals(this.apellidos, otraPersona.apellidos);
+        if ((objeto instanceof Persona otraPersona)) {
+            return Objects.equals(this.nombre, otraPersona.nombre) &&
+                    Objects.equals(this.apellidos, otraPersona.apellidos);
+        } else return false;
     }
 
     /**
@@ -105,8 +103,8 @@ public abstract class Persona implements Invitable {
      */
     @Override
     public String toString() {
-        return "nombre: '" + this.nombre + "'" +
-                ", apellidos: '" + this.apellidos + "'" +
-                ", correo: '" + this.correo + "'";
+        return "Nombre: '" + this.nombre + "',\n" +
+                "Apellidos: '" + this.apellidos + "',\n" +
+                "Correo: '" + this.correo + "'";
     }
 }

@@ -1,6 +1,8 @@
 package logica;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Clase que representa los retrasos de la asistencia a una reunión.
@@ -45,9 +47,13 @@ public class Retraso extends Asistencia {
      */
     @Override
     public String toString() {
-        return "Retraso{" +
-                "asistente: '" + super.getAsistente() + "'" +
-                ", horaLlegada: '" + horaLlegada + "'" +
-                '}';
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
+        String horaLlegadaF = //Formato amigable
+                formatter.format(this.horaLlegada);
+        return "Retraso {\n" +
+                "  Asistente: " + super.getAsistente().toString().replace("\n", "\n  ") + ",\n" +
+                "  Hora de Llegada: '" + horaLlegadaF + "'\n" +
+                "}";
     }
 }
