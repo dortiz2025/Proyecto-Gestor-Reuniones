@@ -1,5 +1,7 @@
 package logica;
 
+import interfaces.Invitable;
+
 import java.util.ArrayList;
 import java.util.List;
 

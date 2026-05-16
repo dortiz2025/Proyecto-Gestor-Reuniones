@@ -1,4 +1,4 @@
-package logica;
+package interfaces;
 
 /**
  * Interfaz que define la capacidad de una entidad para ser invitada a una reunión.

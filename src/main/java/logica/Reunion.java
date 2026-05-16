@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import informe.Informe;
+import interfaces.Invitable;
 
 /**
  * Clase que representa una reunión con su respectiva información.
