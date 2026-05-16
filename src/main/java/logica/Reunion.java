@@ -3,6 +3,7 @@ package logica;
 import enumeraciones.*;
 import excepciones.ReunionFinalizadaException;
 import excepciones.ReunionIniciadaException;
+import excepciones.VerificarInvitadoException;
 import informe.Informe;
 
 import java.time.Duration;  //Duración (con instantes)
@@ -133,7 +134,28 @@ public abstract class Reunion {
      * @param asistente Persona que asiste a la reunión.
      * @param horaLlegada Hora en la que llega el asistente.
      */
-    public void addAsistencia(Persona asistente, Instant horaLlegada){
+    public void addAsistencia(Persona asistente, Instant horaLlegada) throws VerificarInvitadoException {
+        boolean estaInvitado = false;
+        for (Invitacion invitacion : this.invitaciones) {
+            Invitable invitado = invitacion.getInvitado();
+
+            if (invitado instanceof Persona && invitado.equals(asistente)){
+                estaInvitado = true;
+                break;
+            }
+            if (invitado instanceof Departamento) {
+                Departamento depto = (Departamento) invitado;
+
+                if(asistente instanceof Empleado && depto.getEmpleados().contains((Empleado) asistente)){
+                    estaInvitado = true;
+                    break;
+                }
+            }
+        }
+        if (!estaInvitado) {
+            throw new VerificarInvitadoException("La persona " + asistente.getNombre() + " no se encuentra en la lista de invitados.");
+        }
+
         if (this.horaInicio == null || horaLlegada.compareTo(this.horaInicio) <= 0) {
             asistencias.add(new Asistencia(asistente));
         }
