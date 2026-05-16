@@ -276,9 +276,6 @@ public abstract class Reunion {
         }
         System.out.println("Finalizando Reunion");
         this.horaFin = horaFin;
-        //AQUÍ SE DEBE GENERAR EL INFORME.
-        Informe creadorInforme = new Informe();
-        creadorInforme.crearInforme(this);
     }
 
     /**
