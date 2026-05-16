@@ -69,7 +69,7 @@ public abstract class Reunion {
      *
      * @return Entrega la lista de invitaciones.
      */
-    public List obtenerInvitaciones() {
+    public List<Invitacion> obtenerInvitaciones() {
         return this.invitaciones;
     }
 
@@ -93,7 +93,7 @@ public abstract class Reunion {
      *
      * @return Entrega la lista de asistencias.
      */
-    public List obtenerAsistencias() {
+    public List<Asistencia> obtenerAsistencias() {
         return asistencias;
     }
 
@@ -103,7 +103,7 @@ public abstract class Reunion {
      *
      * @return Entrega una lista de asistentes atrasados.
      */
-    public List obtenerRetrasos() {
+    public List<Retraso> obtenerRetrasos() {
         List<Retraso> retrasos = new ArrayList<>();
         for (Asistencia asistencia : this.asistencias){
             if(asistencia instanceof Retraso){
