@@ -146,7 +146,7 @@ public abstract class Reunion {
     }
 
     /**
-     * Getter de retrasos (También es Asistencia)
+     * Getter de retrasos (También es Asistencia).
      * Se obtiene de la lista de asistencias.
      * @return Entrega una lista de asistentes atrasados.
      */
