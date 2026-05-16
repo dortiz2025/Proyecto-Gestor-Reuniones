@@ -6,7 +6,6 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import informe.Informe;
 import interfaces.Invitable;
 
 /**
@@ -126,24 +125,24 @@ public abstract class Reunion {
      * @param asistente Persona que asiste a la reunión.
      * @param horaLlegada Hora en la que llega el asistente.
      */
-    public void addAsistencia(Persona asistente, Instant horaLlegada) throws VerificarInvitadoException {
+    public void addAsistencia(Persona asistente, Instant horaLlegada) throws VerificarInvitadoException, ReunionFinalizadaException {
         boolean estaInvitado = false;
+        if (this.horaFin != null) {
+            throw new ReunionFinalizadaException("Reunión Finalizada.");
+        }
+        for(Asistencia asistencia : this.asistencias) {
+            if(asistencia.getAsistente().equals(asistente)) {
+                throw new VerificarAsistenteException("La persona " + asistente.getNombre() + " ya ha registrado su asistencia.");
+            }
+        }
         for (Invitacion invitacion : this.invitaciones) {
-            Invitable invitado = invitacion.getInvitado();
-
-            if (invitado instanceof Persona && invitado.equals(asistente)){
+            if (invitacion.getInvitado().incluyeA(asistente)){
                 estaInvitado = true;
                 break;
             }
-            if (invitado instanceof Departamento departamento) {
-                if(asistente instanceof Empleado && departamento.getEmpleados().contains((Empleado) asistente)){
-                    estaInvitado = true;
-                    break;
-                }
-            }
         }
         if (!estaInvitado) {
-            throw new VerificarInvitadoException("La persona " + asistente.getNombre() + " no se encuentra en la lista de invitados.");
+            throw new VerificarInvitadoException("La persona " + asistente.getNombre() + " no está invitada.");
         }
 
         if (this.horaInicio == null || horaLlegada.compareTo(this.horaInicio) <= 0) {
@@ -188,38 +187,25 @@ public abstract class Reunion {
     public List<Persona> getAusencias(){
         List<Persona> ausencias = new ArrayList<>();
         List<Persona> personasInvitadas = new ArrayList<>();
+        List<Persona> personasAsistentes = new ArrayList<>();
 
-        //Se añaden los invitados sin duplicados.
+        //Lista de personas invitadas sin duplicados.
         for (Invitacion invitacion : this.invitaciones) {
-            Invitable invitado = invitacion.getInvitado();
-
-            if (invitado instanceof Persona persona) {
-                if (!personasInvitadas.contains(persona)) {
-                    personasInvitadas.add(persona);
-                }
-            } else if (invitado instanceof Departamento departamento) {
-                for (Empleado empleadoInvitado : departamento.getEmpleados()) {
-                    if (!personasInvitadas.contains(empleadoInvitado)) {
-                        personasInvitadas.add(empleadoInvitado);
-                    }
+            Invitable EntidadInvitada = invitacion.getInvitado();
+            for (Persona invitado : EntidadInvitada.obtenerPersonasRepresentadas()) {
+                if (!(personasInvitadas.contains(invitado))) {
+                    personasInvitadas.add(invitado);
                 }
             }
-        }//Ahora se añaden a ausencias los que no asistieron.
-        for (Persona personaInvitada : personasInvitadas){
-            boolean asistio = false;
-            //Buscamos si el invitado asistio.
-            for (Asistencia asistencia : this.asistencias) {
-                Persona asistente = asistencia.getAsistente();
-                if (asistente.equals(personaInvitada)){
-                    asistio = true;
-                    break; //Se encontró, dejamos de buscar.
-                }
-            }//Si no estaba, es ausencia.
-            if(!asistio){
-                ausencias.add(personaInvitada);
+        }//Lista de personas asistentes.
+        for (Asistencia asistencia : this.asistencias){
+            personasAsistentes.add(asistencia.getAsistente());
+        }//Lista de personas ausentes.
+        for (Persona invitado : personasInvitadas) {
+            if (!personasAsistentes.contains(invitado)){
+                ausencias.add(invitado);
             }
         }
-
         return ausencias; //Lista de personas ausentes.
     }
 
@@ -266,13 +252,14 @@ public abstract class Reunion {
      * @param horaFin Hora en la que finalizó la reunión.
      */
     public void finalizar(Instant horaFin) throws ReunionFinalizadaException {
-        //Si la hora de fin tiene un valor distinto de null, lanzamos error.
-        if (this.horaFin != null) {
+        if (this.horaFin != null) { //Si la reunion ya finalizó.
             throw new ReunionFinalizadaException("Reunión ya terminada, no es posible volver a finalizarla.");
-        }
-        //Si además la hora de inicio es null (no ha comenzado), lanzamos error.
+        }//Si la reunión no ha comenzado.
         if (this.horaInicio == null){
-            throw new ReunionFinalizadaException("No es posible terminar una reunión que no ha comenzado.");
+            throw new ReunionNoIniciadaException("No es posible terminar la reunión porque no ha comenzado.");
+        }//Si la horaFin no es coherente con la horaInicio.
+        if (horaFin.isBefore(this.horaInicio)) {
+            throw new IncoherenciaDuracionReunionException("La hora de fin no puede ser anterior a la hora de inicio.");
         }
         System.out.println("Finalizando Reunion");
         this.horaFin = horaFin;
@@ -283,6 +270,9 @@ public abstract class Reunion {
      * @return Duración de la reunión en minutos.
      */
     public float calcularTiempoReal() {
+        if (this.horaInicio == null || this.horaFin == null) {
+            return 0.0f;
+        }
         Duration duracionReal = Duration.between(this.horaInicio, this.horaFin);
         return (float) duracionReal.toMinutes(); //Duración en minutos.
     }
