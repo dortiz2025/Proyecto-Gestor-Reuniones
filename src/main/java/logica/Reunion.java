@@ -28,7 +28,6 @@ public abstract class Reunion {
 
     /**
      * Se crea una Reunion.
-     *
      * @param tipoReunion Tipo de reunión.
      * @param fecha Fecha agendada de la reunión.
      * @param horaPrevista Hora de inicio prevista.
@@ -42,40 +41,92 @@ public abstract class Reunion {
         this.duracionPrevista = duracionPrevista;
         this.organizador = organizador;
 
+        this.horaInicio = null;
+        this.horaFin = null;
+
         this.invitaciones = new ArrayList<>();
         this.asistencias = new ArrayList<>();
         this.notas = new ArrayList<>();
     }
 
     /**
-     * Metodo que invita a una entidad a la reunión.
+     * Getter de tipoReunion.
+     * @return Tipo de reunión.
+     */
+    public TipoReunion getTipoReunion() {
+        return tipoReunion;
+    }
+
+    /**
+     * Getter de fecha.
+     * @return Fecha de la reunión.
+     */
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    /**
+     * Getter de horaPrevista.
+     * @return Hora prevista de la reunión.
+     */
+    public LocalTime getHoraPrevista() {
+        return horaPrevista;
+    }
+
+    /**
+     * Getter de duracionPrevista.
+     * @return Duración prevista de la reunión.
+     */
+    public Duration getDuracionPrevista() {
+        return duracionPrevista;
+    }
+
+    /**
+     * Getter de organizador.
+     * @return Organizador de la reunión.
+     */
+    public Empleado getOrganizador() {
+        return organizador;
+    }
+
+    /**
+     * Getter de horaInicio.
+     * @return Hora real de inicio de la reunión.
+     */
+    public Instant getHoraInicio() {
+        return horaInicio;
+    }
+
+    /**
+     * Getter de horaFin.
+     * @return Hora en la que terminó la reunión.
+     */
+    public Instant getHoraFin() {
+        return horaFin;
+    }
+
+    /**
+     * Invita a una entidad a la reunión.
      * La invitación se registra en la lista de invitaciones.
-     *
-     * @param invitado La entidad que será invitada.
+     * @param invitado Entidad que será invitada.
      */
     public void invitarParticipante(Invitable invitado) {
-        //Instante en que se está enviando
-        Instant horaDeEnvio = Instant.now();
-        //Se crea la invitación
-        Invitacion nuevaInvitacion = new Invitacion(horaDeEnvio, invitado);
-        //Se guarda en la lista de invitaciones para tener registro
-        this.invitaciones.add(nuevaInvitacion);
-        //Se invita a la entidad
-        invitado.invitar();
+        Instant horaDeEnvio = Instant.now(); //Instante en que se está enviando
+        Invitacion nuevaInvitacion = new Invitacion(horaDeEnvio, invitado); //Se crea la invitación
+        this.invitaciones.add(nuevaInvitacion); //Se guarda en la lista de invitaciones para tener registro
+        invitado.invitar(); //Se invita a la entidad
     }
 
     /**
      * Getter de invitaciones.
-     *
      * @return Entrega la lista de invitaciones.
      */
-    public List<Invitacion> obtenerInvitaciones() {
+    public List<Invitacion> getInvitaciones() {
         return this.invitaciones;
     }
 
     /**
-     * Metodo que registra la asistencia de una persona a la reunión.
-     *
+     * Registra la asistencia de una persona a la reunión.
      * @param asistente Persona que asiste a la reunión.
      * @param horaLlegada Hora en la que llega el asistente.
      */
@@ -83,39 +134,32 @@ public abstract class Reunion {
         if (this.horaInicio == null || horaLlegada.compareTo(this.horaInicio) <= 0) {
             asistencias.add(new Asistencia(asistente));
         }
-        else {
-            asistencias.add(new Retraso(asistente, horaLlegada));
-        }
+        else asistencias.add(new Retraso(asistente, horaLlegada));
     }
 
     /**
      * Getter de asistencias.
-     *
      * @return Entrega la lista de asistencias.
      */
-    public List<Asistencia> obtenerAsistencias() {
+    public List<Asistencia> getAsistencias() {
         return asistencias;
     }
 
     /**
      * Getter de retrasos (También es Asistencia)
      * Se obtiene de la lista de asistencias.
-     *
      * @return Entrega una lista de asistentes atrasados.
      */
     public List<Retraso> obtenerRetrasos() {
         List<Retraso> retrasos = new ArrayList<>();
         for (Asistencia asistencia : this.asistencias){
-            if(asistencia instanceof Retraso){
-            retrasos.add((Retraso) asistencia);
-            }
+            if(asistencia instanceof Retraso) retrasos.add((Retraso) asistencia);
         }
         return retrasos;
     }
 
     /**
-     * Metodo que entrega la cantidad total de asistencia a la reunión.
-     *
+     * Entrega la cantidad total de asistencia a la reunión.
      * @return Cantidad total de asistencia a la reunion.
      */
     public int obtenerTotalAsistencia() {
@@ -123,9 +167,8 @@ public abstract class Reunion {
     }
 
     /**
-     * Metodo que entrega una lista de ausentes
+     * Entrega una lista de ausentes
      * a una reunión (previamente invitados).
-     *
      * @return Lista de ausentes.
      */
     public List<Persona> getAusencias(){
@@ -167,8 +210,7 @@ public abstract class Reunion {
     }
 
     /**
-     * Metodo que entrega el porcentaje de asistencia de la reunión.
-     *
+     * Entrega el porcentaje de asistencia de la reunión.
      * @return Porcentaje de asistencia (en decimal).
      */
     public float obtenerPorcentajeAsistencia() {
@@ -177,25 +219,47 @@ public abstract class Reunion {
     }
 
     /**
-     * Metodo para iniciar la reunión.
+     * Añade una nota a la reunión.
+     * @param nota Nueva nota sobre la reunión.
      */
-    public void iniciar(){
-        System.out.println("Iniciando Reunion");
-        this.horaInicio = Instant.now();
+    public void addNota(Nota nota){
+        this.notas.add(nota);
     }
 
     /**
-     * Metodo para finalizar la reunión.
+     * Getter de notas.
+     * @return Lista de notas de la reunión.
      */
-    public void finalizar(){
-        System.out.println("Finalizando Reunion");
-        this.horaFin = Instant.now();
+    public List<Nota> getNotas() {
+        return notas;
     }
 
     /**
-     * Metodo que entrega la duración real de la reunión.
-     *
-     * @return Entrega la duración de la reunión en minutos.
+     * Inicia la reunión.
+     * @param horaInicio Hora en la que inició la reunión.
+     */
+    public void iniciar(Instant horaInicio){
+        if (this.horaInicio == null) {
+            System.out.println("Iniciando Reunion");
+            this.horaInicio = horaInicio;
+        }
+    }
+
+    /**
+     * Finaliza la reunión.
+     * @param horaFin Hora en la que finalizó la reunión.
+     */
+    public void finalizar(Instant horaFin){
+        if (this.horaFin == null) {
+            System.out.println("Finalizando Reunion");
+            this.horaFin = horaFin;
+        }
+        //AQUÍ SE DEBE GENERAR EL INFORME.
+    }
+
+    /**
+     * Entrega la duración real de la reunión.
+     * @return Duración de la reunión en minutos.
      */
     public float calcularTiempoReal() {
         Duration duracionReal = Duration.between(this.horaInicio, this.horaFin);
