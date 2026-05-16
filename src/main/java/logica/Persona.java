@@ -1,13 +1,13 @@
 package logica;
 
 import excepciones.CorreoInvalidoException;
-
+import interfaces.Invitable;
 import java.util.Objects;
 
 /**
  * Clase que representa a una persona que puede ser invitada a una reunión.
  */
-public abstract class Persona implements Invitable{
+public abstract class Persona implements Invitable {
     private String nombre;
     private String apellidos;
     private String correo;

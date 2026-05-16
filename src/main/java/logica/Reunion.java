@@ -3,6 +3,7 @@ package logica;
 import enumeraciones.*;
 import excepciones.*;
 import informe.Informe;
+import interfaces.Invitable;
 import java.time.Duration;  //Duración (con instantes)
 import java.time.Instant;   //Instantes exactos
 import java.time.LocalDate; //Fecha simple

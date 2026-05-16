@@ -1,5 +1,6 @@
 package logica;
 
+import interfaces.Invitable;
 import java.time.Instant;
 
 /**
