@@ -42,8 +42,8 @@ public class Asistencia {
      */
     @Override
     public String toString() {
-        return  "Asistencia{" +
-                "asistente: '" + asistente + "'" +
-                '}';
+        return "Asistencia {\n" +
+                "  asistente: " + this.asistente.toString().replace("\n", "\n  ") + "\n" +
+                "}";
     }
 }
