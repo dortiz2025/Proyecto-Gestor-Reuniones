@@ -37,4 +37,12 @@ public class Retraso extends Asistencia {
     public void setHoraLlegada(Instant horaLlegada) {
         this.horaLlegada = horaLlegada;
     }
+
+    @Override
+    public String toString() {
+        return "Retraso{" +
+                "asistente: '" + super.getAsistente() + "'" +
+                "horaLlegada: '" + horaLlegada + "'" +
+                '}';
+    }
 }
