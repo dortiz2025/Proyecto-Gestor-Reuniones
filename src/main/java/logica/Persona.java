@@ -1,5 +1,7 @@
 package logica;
 
+import excepciones.CorreoInvalidoException;
+
 import java.util.Objects;
 
 /**
@@ -73,10 +75,11 @@ public abstract class Persona implements Invitable{
      *
      * @param correo Nuevo correo de la persona.
      */
-    public void setCorreo(String correo) {
-        if (correo.contains("@")) {
-            this.correo = correo;
+    public void setCorreo(String correo) throws CorreoInvalidoException {
+        if (!correo.contains("@")) {
+            throw new CorreoInvalidoException("Correo no válido.");
         }
+        this.correo = correo;
 
     }
 
