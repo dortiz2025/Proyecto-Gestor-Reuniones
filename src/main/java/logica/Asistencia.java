@@ -43,7 +43,7 @@ public class Asistencia {
     @Override
     public String toString() {
         return "Asistencia {\n" +
-                "  asistente: " + this.asistente.toString().replace("\n", "\n  ") + "\n" +
+                "  Asistente: " + this.asistente.toString().replace("\n", "\n  ") + "\n" +
                 "}";
     }
 }

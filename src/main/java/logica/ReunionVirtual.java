@@ -55,7 +55,7 @@ public class ReunionVirtual extends Reunion{
     public String toString() {
         return "ReunionVirtual{" +
                 super.toString() +
-                ", enlace: '" + enlace + "'" +
+                ", Enlace: '" + enlace + "'" +
                 '}';
     }
 }

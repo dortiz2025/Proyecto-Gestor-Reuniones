@@ -52,8 +52,8 @@ public class Retraso extends Asistencia {
         String horaLlegadaF = //Formato amigable
                 formatter.format(this.horaLlegada);
         return "Retraso {\n" +
-                "  asistente: " + super.getAsistente().toString().replace("\n", "\n  ") + ",\n" +
-                "  horaLlegada: '" + horaLlegadaF + "'\n" +
+                "  Asistente: " + super.getAsistente().toString().replace("\n", "\n  ") + ",\n" +
+                "  Hora de Llegada: '" + horaLlegadaF + "'\n" +
                 "}";
     }
 }

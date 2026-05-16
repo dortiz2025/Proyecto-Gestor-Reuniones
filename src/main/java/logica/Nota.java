@@ -65,13 +65,13 @@ public class Nota {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-                .withZone(ZoneId.systemDefault());
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
         String horaNotaF = //Formato amigable
                 formatter.format(this.horaNota);
-        return  "Nota{" +
-                "contenido: '" + contenido + "'" +
-                ", horaNota: '" + horaNotaF + "'" +
-                '}';
+        return "Nota {\n" +
+                "  Contenido: '" + this.contenido + "',\n" +
+                "  HoraNota: '" + horaNotaF + "'\n" +
+                "}";
     }
 }
