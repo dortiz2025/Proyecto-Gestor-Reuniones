@@ -71,7 +71,7 @@ public class Nota {
                 formatter.format(this.horaNota);
         return "Nota {\n" +
                 "  Contenido: '" + this.contenido + "',\n" +
-                "  HoraNota: '" + horaNotaF + "'\n" +
+                "  Hora de la Nota: '" + horaNotaF + "'\n" +
                 "}";
     }
 }

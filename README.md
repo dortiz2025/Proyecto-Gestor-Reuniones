@@ -34,3 +34,10 @@ Además, el polimorfismo permite hacer listas de "personas" dentro del proyecto.
 
 - En clase reunión se añadieron parámetros para los métodos de iniciar y finalizar.
   Esto permite que se puedan realizar unit tests.
+
+
+- Para atributos de tipo Instant se usó un formato amigable al imprimirlos en los métodos toString.
+
+
+- En el toString de Reunión se usó una concatenación optimizada que entrega java con StringBuilder y append().
+  Esto dado que los string en sí no son modificables y usar "+" muestra un diseño nada eficiente.

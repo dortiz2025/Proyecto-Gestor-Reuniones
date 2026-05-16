@@ -53,9 +53,9 @@ public class ReunionVirtual extends Reunion{
      */
     @Override
     public String toString() {
-        return "ReunionVirtual{" +
+        return "Reunión Virtual {\n" +
+                "  Enlace: '" + this.enlace + "',\n" +
                 super.toString() +
-                ", Enlace: '" + enlace + "'" +
-                '}';
+                "}";
     }
 }
