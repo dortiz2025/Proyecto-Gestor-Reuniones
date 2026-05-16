@@ -1,6 +1,7 @@
 package informe;
 
 import enumeraciones.*;
+import excepciones.InformeNoGenerableException;
 import logica.*;
 
 import java.io.FileWriter;
@@ -16,13 +17,16 @@ public class Informe {
      * Metodo que genera un archivo con toda la información recopilada acerca de la reunión.
      * @param reunion información sobre la reunion.
      */
-    public void crearInforme(Reunion reunion){
+    public void crearInforme(Reunion reunion) throws InformeNoGenerableException{
+        if (reunion.getHoraInicio() == null && reunion.getHoraFin() == null) {
+            throw new InformeNoGenerableException ("No es posible generar el informe.");
+        }
 
         try (FileWriter fw = new FileWriter("InformeReunion.txt"); PrintWriter escritor = new PrintWriter(fw)) {
 
             escritor.println("Organizador: " + reunion.getOrganizador());
             //no sé en qué formato estarán las invitaciones, si individualmente
-            escritor.println("Invitados: " + reunion.obtenerInvitaciones());
+            escritor.println("Invitados:\n" + reunion.obtenerInvitaciones());
 
             if (reunion instanceof ReunionPresencial) {
                 escritor.println("Tipo de reunión: Presencial");
