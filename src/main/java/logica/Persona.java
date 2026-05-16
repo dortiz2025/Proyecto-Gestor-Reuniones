@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Objects;
+
 /**
  * Clase que representa a una persona que puede ser invitada a una reunión.
  */
@@ -79,11 +81,37 @@ public abstract class Persona implements Invitable{
     }
 
     /**
-     * Metodo que entrega información de Persona.
+     * Sobrescritura de equals.
      *
-     * @return Información de la persona.
+     * @param objeto Referencia del objeto con el que comparamos.
+     * @return Valor booleano que depende de la igualdad de los objetos.
      */
+    @Override
+    public boolean equals(Object objeto) {
+        if (this == objeto) return true;
+        if (!(objeto instanceof Persona)) return false;
 
+        Persona otraPersona = (Persona) objeto;
+        //Comparación segura.
+        return Objects.equals(this.nombre, otraPersona.nombre) &&
+                Objects.equals(this.apellidos, otraPersona.apellidos);
+    }
+
+    /**
+     * Override del hashCode como buena práctica.
+     *
+     * @return Identificador.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.nombre, this.apellidos);
+    }
+
+    /**
+     * Entrega información representativa de Persona.
+     *
+     * @return Información básica de la persona.
+     */
     @Override
     public String toString() {
         return "nombre: '" + this.nombre + "'" +

@@ -33,6 +33,6 @@ public class InvitadoExterno extends Persona{
     public String toString() {
         return "InvitadoExterno{" +
                 super.toString() +
-                "'}";
+                "}";
     }
 }

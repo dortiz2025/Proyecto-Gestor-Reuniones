@@ -16,8 +16,21 @@ Esto con el objetivo de reutilizar código implementando el concepto de herencia
 Además, el polimorfismo permite hacer listas de "personas" dentro del proyecto.  
 
 
-- Persona implementa la interfaz Invitable. Evita ruido visual innecesario en el UML.
+- Persona implementa la interfaz Invitable. 
+  Tanto Empleado como InvitadoExterno pueden ser invitados.
 
 
-- La relación Empleado-Asistencia ahora es Persona-Asistencia y es una relación de Composición.  
-  Esto tiene sentido porque una lista de asistencia no existe sin personas.
+- La relación Empleado-Asistencia ahora es Persona-Asistencia para incluir a InvitadoExterno.
+
+
+- Se cambia Date por LocalDate para atributo fecha en Reunion.
+  También se usa particularmente en un caso LocalTime en vez de Instant.
+  El nuevo formato es más amigable para estos atributos.
+
+
+- Para mantener la encapsulación, se omitieron los setters 
+  de algunos atributos de reunion críticos.
+  La parcial modificación de algunos atributos se realiza únicamente a través de los adders.
+
+- En clase reunión se añadieron parámetros para los métodos de iniciar y finalizar.
+  Esto permite que se puedan realizar unit tests.
