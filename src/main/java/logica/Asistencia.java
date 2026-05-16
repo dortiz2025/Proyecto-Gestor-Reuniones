@@ -34,4 +34,16 @@ public class Asistencia {
     public void setAsistente(Persona asistente) {
         this.asistente = asistente;
     }
+
+    /**
+     * Entrega información representativa de Asistencia.
+     *
+     * @return Información de Asistencia.
+     */
+    @Override
+    public String toString() {
+        return  "Asistencia{" +
+                "asistente: '" + asistente + "'" +
+                '}';
+    }
 }

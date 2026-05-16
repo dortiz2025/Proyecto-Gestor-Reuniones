@@ -45,4 +45,17 @@ public class ReunionVirtual extends Reunion{
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
+
+    /**
+     * Entrega información representativa de la reunión virtual.
+     *
+     * @return información de la reunión virtual.
+     */
+    @Override
+    public String toString() {
+        return "ReunionVirtual{" +
+                super.toString() +
+                "enlace: '" + enlace + "'" +
+                '}';
+    }
 }

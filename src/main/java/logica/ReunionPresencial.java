@@ -45,4 +45,17 @@ public class ReunionPresencial extends Reunion{
     public void setSala(String sala) {
         this.sala = sala;
     }
+
+    /**
+     * Entrega información representativa de la reunión presencial.
+     *
+     * @return información de la reunión presencial.
+     */
+    @Override
+    public String toString() {
+        return "ReunionPresencial{" +
+                super.toString() +
+                "sala: '" + sala + "'" +
+                '}';
+    }
 }

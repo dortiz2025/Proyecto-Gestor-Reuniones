@@ -77,7 +77,7 @@ public class Departamento implements Invitable {
     }
 
     /**
-     * Metodo que entrega información sobre Departamento.
+     * Entrega información representativa de Departamento.
      *
      * @return Información del departamento.
      */

@@ -266,4 +266,17 @@ public abstract class Reunion {
         return (float) duracionReal.toMinutes(); //Duración en minutos.
     }
 
+    /**
+     * Entrega información representativa de la reunión.
+     *
+     * @return Información de la reunión.
+     */
+    @Override
+    public String toString() {
+        return  "tipoReunion: '" + tipoReunion + "'" +
+                "fecha: '" + fecha + "'" +
+                "horaPrevista: '" + horaPrevista + "'" +
+                "duracionPrevista: '" + duracionPrevista + "'" +
+                "organizador: '" + organizador + "'";
+    }
 }
