@@ -54,7 +54,7 @@ public class Empleado extends Persona{
     @Override
     public String toString() {
         return "Empleado{" +
-                ", id: '" + id + "'" +
+                "id: '" + id + "'" +
                 ", " + super.toString() +
                 "}";
     }
