@@ -27,4 +27,22 @@ public class ReunionVirtual extends Reunion{
         super(tipoReunion, fecha, horaPrevista, duracionPrevista, organizador);
         this.enlace = enlace;
     }
+
+    /**
+     * Getter de enlace.
+     *
+     * @return Enlace de la reunión virtual.
+     */
+    public String getEnlace() {
+        return enlace;
+    }
+
+    /**
+     * Setter de enlace.
+     *
+     * @param enlace Nuevo enlace de la reunión virtual.
+     */
+    public void setEnlace(String enlace) {
+        this.enlace = enlace;
+    }
 }

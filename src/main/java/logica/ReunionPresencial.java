@@ -27,4 +27,22 @@ public class ReunionPresencial extends Reunion{
         super(tipoReunion, fecha, horaPrevista, duracionPrevista, organizador);
         this.sala = sala;
     }
+
+    /**
+     * Getter de sala.
+     *
+     * @return Sala en la que se hará la reunión.
+     */
+    public String getSala() {
+        return sala;
+    }
+
+    /**
+     * Setter de sala.
+     *
+     * @param sala Nueva sala en la que se hará la reunión.
+     */
+    public void setSala(String sala) {
+        this.sala = sala;
+    }
 }
