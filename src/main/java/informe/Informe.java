@@ -18,6 +18,9 @@ public class Informe {
      * @param reunion información sobre la reunion.
      */
     public void crearInforme(Reunion reunion) throws InformeNoGenerableException{
+        /**
+         *
+         */
         if (reunion.getHoraInicio() == null && reunion.getHoraFin() == null) {
             throw new InformeNoGenerableException ("No es posible generar el informe.");
         }
@@ -25,8 +28,8 @@ public class Informe {
         try (FileWriter fw = new FileWriter("InformeReunion.txt"); PrintWriter escritor = new PrintWriter(fw)) {
 
             escritor.println("Organizador: " + reunion.getOrganizador());
-            //no sé en qué formato estarán las invitaciones, si individualmente
-            escritor.println("Invitados:\n" + reunion.obtenerInvitaciones());
+
+            escritor.println("Invitados:\n" + reunion.getInvitaciones());
 
             if (reunion instanceof ReunionPresencial) {
                 escritor.println("Tipo de reunión: Presencial");
@@ -35,7 +38,7 @@ public class Informe {
                 escritor.println("Tipo de reunión: Virtual");
             }
 
-            escritor.println("Fecha: " + reunion.getFecha() + " | Hora: " + reunion.getHora());
+            escritor.println("Fecha: " + reunion.getFecha() + " | Hora: " + reunion.getHoraPrevista());
 
             if (reunion instanceof ReunionPresencial) {
                 ReunionPresencial presencial = (ReunionPresencial) reunion;
@@ -47,12 +50,12 @@ public class Informe {
             }
 
             escritor.println("      --REUNIÓN FINALIZADA--");
-            escritor.println("Hora inicio: " + reunion.getHoraIncio + " | Hora término: " + reunion.getHoraTermino());
+            escritor.println("Hora inicio: " + reunion.getHoraInicio() + " | Hora término: " + reunion.getHoraFin());
             //para la clase asistencia por favor colocar de inmediato los atrasos igual para que se incluyan aquí
             //utilicemos la lista completa para colocar ausentes/presentes(atraso o sin atraso)
 
             escritor.println("  -ASISTENCIA-\n" + "Total empleados presentes: " + reunion.obtenerTotalAsistencia() +
-                    "\n" + reunion.obtenerAsistencias());
+                    "\n" + reunion.getAsistencias());
 
             escritor.println("  -NOTAS-\n" + reunion.getNotas());
 

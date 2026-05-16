@@ -1,6 +1,7 @@
 package logica;
 
 import enumeraciones.*;
+import informe.Informe;
 
 import java.time.Duration;  //Duración (con instantes)
 import java.time.Instant;   //Instantes exactos
@@ -255,6 +256,8 @@ public abstract class Reunion {
             this.horaFin = horaFin;
         }
         //AQUÍ SE DEBE GENERAR EL INFORME.
+        Informe creadorInforme = new Informe();
+        creadorInforme.crearInforme(this);
     }
 
     /**
