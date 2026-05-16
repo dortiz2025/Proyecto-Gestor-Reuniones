@@ -1,11 +1,8 @@
 package logica;
 
 import enumeraciones.*;
-import excepciones.ReunionFinalizadaException;
-import excepciones.ReunionIniciadaException;
-import excepciones.VerificarInvitadoException;
+import excepciones.*;
 import informe.Informe;
-
 import java.time.Duration;  //Duración (con instantes)
 import java.time.Instant;   //Instantes exactos
 import java.time.LocalDate; //Fecha simple
@@ -22,10 +19,8 @@ public abstract class Reunion {
     private LocalTime horaPrevista;
     private Duration duracionPrevista;
     private Empleado organizador;
-
     private Instant horaInicio;
     private Instant horaFin;
-
     private List<Invitacion> invitaciones;
     private List<Asistencia> asistencias;
     private List<Nota> notas;
@@ -44,10 +39,8 @@ public abstract class Reunion {
         this.horaPrevista = horaPrevista;
         this.duracionPrevista = duracionPrevista;
         this.organizador = organizador;
-
         this.horaInicio = null;
         this.horaFin = null;
-
         this.invitaciones = new ArrayList<>();
         this.asistencias = new ArrayList<>();
         this.notas = new ArrayList<>();
@@ -143,10 +136,8 @@ public abstract class Reunion {
                 estaInvitado = true;
                 break;
             }
-            if (invitado instanceof Departamento) {
-                Departamento depto = (Departamento) invitado;
-
-                if(asistente instanceof Empleado && depto.getEmpleados().contains((Empleado) asistente)){
+            if (invitado instanceof Departamento departamento) {
+                if(asistente instanceof Empleado && departamento.getEmpleados().contains((Empleado) asistente)){
                     estaInvitado = true;
                     break;
                 }
@@ -158,8 +149,7 @@ public abstract class Reunion {
 
         if (this.horaInicio == null || horaLlegada.compareTo(this.horaInicio) <= 0) {
             asistencias.add(new Asistencia(asistente));
-        }
-        else asistencias.add(new Retraso(asistente, horaLlegada));
+        } else asistencias.add(new Retraso(asistente, horaLlegada));
     }
 
     /**
@@ -200,7 +190,7 @@ public abstract class Reunion {
         List<Persona> ausencias = new ArrayList<>();
         List<Persona> personasInvitadas = new ArrayList<>();
 
-      //Se añaden todas las personas invitadas sin repetir.
+        //Se añaden los invitados sin duplicados.
         for (Invitacion invitacion : this.invitaciones) {
             Invitable invitado = invitacion.getInvitado();
 
@@ -220,7 +210,7 @@ public abstract class Reunion {
             boolean asistio = false;
             //Buscamos si el invitado asistio.
             for (Asistencia asistencia : this.asistencias) {
-                Persona asistente = (Persona) asistencia.getAsistente();
+                Persona asistente = asistencia.getAsistente();
                 if (asistente.equals(personaInvitada)){
                     asistio = true;
                     break; //Se encontró, dejamos de buscar.
@@ -303,7 +293,6 @@ public abstract class Reunion {
 
     /**
      * Entrega información representativa de la reunión.
-     *
      * @return Información de la reunión.
      */
     @Override
