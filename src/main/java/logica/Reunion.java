@@ -1,6 +1,10 @@
 package logica;
 
 import enumeraciones.*;
+import excepciones.ReunionFinalizadaException;
+import excepciones.ReunionIniciadaException;
+import excepciones.VerificarInvitadoException;
+import informe.Informe;
 
 import java.time.Duration;  //Duración (con instantes)
 import java.time.Instant;   //Instantes exactos
@@ -130,7 +134,28 @@ public abstract class Reunion {
      * @param asistente Persona que asiste a la reunión.
      * @param horaLlegada Hora en la que llega el asistente.
      */
-    public void addAsistencia(Persona asistente, Instant horaLlegada){
+    public void addAsistencia(Persona asistente, Instant horaLlegada) throws VerificarInvitadoException {
+        boolean estaInvitado = false;
+        for (Invitacion invitacion : this.invitaciones) {
+            Invitable invitado = invitacion.getInvitado();
+
+            if (invitado instanceof Persona && invitado.equals(asistente)){
+                estaInvitado = true;
+                break;
+            }
+            if (invitado instanceof Departamento) {
+                Departamento depto = (Departamento) invitado;
+
+                if(asistente instanceof Empleado && depto.getEmpleados().contains((Empleado) asistente)){
+                    estaInvitado = true;
+                    break;
+                }
+            }
+        }
+        if (!estaInvitado) {
+            throw new VerificarInvitadoException("La persona " + asistente.getNombre() + " no se encuentra en la lista de invitados.");
+        }
+
         if (this.horaInicio == null || horaLlegada.compareTo(this.horaInicio) <= 0) {
             asistencias.add(new Asistencia(asistente));
         }
@@ -238,23 +263,33 @@ public abstract class Reunion {
      * Inicia la reunión.
      * @param horaInicio Hora en la que inició la reunión.
      */
-    public void iniciar(Instant horaInicio){
-        if (this.horaInicio == null) {
-            System.out.println("Iniciando Reunion");
-            this.horaInicio = horaInicio;
+    public void iniciar(Instant horaInicio) throws ReunionIniciadaException{
+        //Si la hora de inicio tiene valor distinto de null, lanzamos error.
+        if (this.horaInicio != null) {
+            throw new ReunionIniciadaException("No se puede iniciar una reunión ya finalizada o que ya se inició.");
         }
+        System.out.println("Iniciando Reunion");
+        this.horaInicio = horaInicio;
     }
 
     /**
      * Finaliza la reunión.
      * @param horaFin Hora en la que finalizó la reunión.
      */
-    public void finalizar(Instant horaFin){
-        if (this.horaFin == null) {
-            System.out.println("Finalizando Reunion");
-            this.horaFin = horaFin;
+    public void finalizar(Instant horaFin) throws ReunionFinalizadaException {
+        //Si la hora de fin tiene un valor distinto de null, lanzamos error.
+        if (this.horaFin != null) {
+            throw new ReunionFinalizadaException("Reunión ya terminada, no es posible volver a finalizarla.");
         }
+        //Si además la hora de inicio es null (no ha comenzado), lanzamos error.
+        if (this.horaInicio == null){
+            throw new ReunionFinalizadaException("No es posible terminar una reunión que no ha comenzado.");
+        }
+        System.out.println("Finalizando Reunion");
+        this.horaFin = horaFin;
         //AQUÍ SE DEBE GENERAR EL INFORME.
+        Informe creadorInforme = new Informe();
+        creadorInforme.crearInforme(this);
     }
 
     /**
