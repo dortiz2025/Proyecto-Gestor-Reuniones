@@ -38,6 +38,11 @@ public class Retraso extends Asistencia {
         this.horaLlegada = horaLlegada;
     }
 
+    /**
+     * Entrega información representativa de Retraso.
+     *
+     * @return Información acerca del retraso.
+     */
     @Override
     public String toString() {
         return "Retraso{" +
