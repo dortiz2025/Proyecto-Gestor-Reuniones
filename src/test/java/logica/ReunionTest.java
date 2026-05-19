@@ -93,4 +93,46 @@ public class ReunionTest {
 
         assertEquals(2, reunion.getAusencias().size(), "Ambos deberian estar ausentes inicialmente");
     }
+
+    //tests de asistencias
+
+    @Test
+    public void testAddAsistenciaATiempoSeRegistraComoAsistenciaNormal() throws Exception {
+        Empleado invitado = new Empleado("Carlos", "Ruiz", "carlos@mail.com", "E1");
+        reunion.invitarParticipante(invitado);
+
+        Instant horaInicio = Instant.now();
+        reunion.iniciar(horaInicio);
+
+        reunion.addAsistencia(invitado, horaInicio);
+
+        assertEquals(1, reunion.obtenerTotalAsistencia(), "Debe haber 1 asistente");
+        assertEquals(0, reunion.obtenerRetrasos().size(), "No debería haber retrasos");
+    }
+
+    @Test
+    public void testAddAsistenciaTardeSeRegistraComoRetraso() throws Exception {
+        Empleado invitado = new Empleado("Carlos", "Ruiz", "carlos@mail.com", "E1");
+        reunion.invitarParticipante(invitado);
+
+        Instant horaInicio = Instant.now();
+        reunion.iniciar(horaInicio);
+
+        Instant horaLlegadaTarde = horaInicio.plus(Duration.ofMinutes(10));
+        reunion.addAsistencia(invitado, horaLlegadaTarde);
+
+        assertEquals(1, reunion.obtenerTotalAsistencia(), "Debe haber 1 asistente");
+        assertEquals(1, reunion.obtenerRetrasos().size(), "Debe registrarse como 1 retraso");
+        assertTrue(reunion.getAsistencias().get(0) instanceof Retraso, "El objeto debe ser de clase Retraso");
+    }
+
+    @Test
+    public void testAddAsistenciaNoInvitadoLanzaExcepcion() throws Exception {
+        Empleado intruso = new Empleado("Fernando", "Concha", "fconcha@mail.com", "X1");
+        reunion.iniciar(Instant.now());
+
+        assertThrows(VerificarInvitadoException.class, () -> {
+            reunion.addAsistencia(intruso, Instant.now());
+        }, "Debería lanzar error si entra alguien no invitado");
+    }
 }
