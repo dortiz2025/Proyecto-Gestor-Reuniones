@@ -163,4 +163,43 @@ public class ReunionTest {
         assertEquals(0.666f, porcentaje, 0.01f, "El porcentaje debe ser aprox 0.666");
     }
 
+    //tests de seguridad final
+
+    @Test
+    public void testFinalizarDosVecesLanzaExcepcion() {
+        Instant inicio = Instant.now();
+        reunion.iniciar(inicio);
+        reunion.finalizar(inicio.plus(Duration.ofMinutes(30)));
+
+        assertThrows(ReunionFinalizadaException.class, () -> {
+            reunion.finalizar(Instant.now());
+        }, "Debería lanzar error al intentar finalizar una reunión que ya terminó");
+    }
+
+    @Test
+    public void testAsistenciaReunionFinalizadaLanzaExcepcion() {
+        Empleado invitado = new Empleado("Leo", "Tarde", "leo@mail.com", "E9");
+        reunion.invitarParticipante(invitado);
+
+        Instant inicio = Instant.now();
+        reunion.iniciar(inicio);
+        reunion.finalizar(inicio.plus(Duration.ofMinutes(15)));
+
+        assertThrows(ReunionFinalizadaException.class, () -> {
+            reunion.addAsistencia(invitado, Instant.now());
+        }, "Debería tirar error si alguien asiste a una reunion finalizada");
+    }
+
+    @Test
+    public void testAsistenciaDuplicadaLanzaExcepcion() {
+        Empleado invitado = new Empleado("Doble", "Asistencia", "doble@mail.com", "E10");
+        reunion.invitarParticipante(invitado);
+
+        reunion.iniciar(Instant.now());
+        reunion.addAsistencia(invitado, Instant.now());
+
+        assertThrows(VerificarAsistenteException.class, () -> {
+            reunion.addAsistencia(invitado, Instant.now());
+        }, "Deberia dar error al intentar registrar dos veces a la misma persona");
+    }
 }
