@@ -69,4 +69,28 @@ public class ReunionTest {
 
         assertEquals(45.0f, reunion.calcularTiempoReal(), "El tiempo real calculado debe ser de 45 minutos");
     }
+
+    //tests de invitaciones y notas
+
+    @Test
+    public void testAddNotaAumentaLaLista() {
+        Nota nota = new Nota("Esta es una nota muy importante!!! Atentamente: yo", Instant.now());
+        reunion.addNota(nota);
+
+        assertEquals(1, reunion.getNotas().size(), "La lista de notas debe tener 1 elemento");
+        assertEquals("Esta es una nota muy importante!!! Atentamente: yo", reunion.getNotas().get(0).getContenido());
+    }
+
+    @Test
+    public void testInvitarDepartamentoInvitaATodosSusEmpleados() throws Exception {
+        Departamento ventas = new Departamento("Ventas");
+        Empleado emp1 = new Empleado("Juan", "Salazar", "jsalazar@mail.com", "EMP-03");
+        Empleado emp2 = new Empleado("Lucas", "Vega", "lvega@mail.com", "EMP-04");
+        ventas.agregarEmpleado(emp1);
+        ventas.agregarEmpleado(emp2);
+
+        reunion.invitarParticipante(ventas);
+
+        assertEquals(2, reunion.getAusencias().size(), "Ambos deberian estar ausentes inicialmente");
+    }
 }
