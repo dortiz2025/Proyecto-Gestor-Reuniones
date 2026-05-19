@@ -39,4 +39,24 @@ public class ReunionTest {
             reunion.iniciar(Instant.now());
         }, "Deberia dar error al intentar iniciar una reunion ya iniciada");
     }
+
+    //tests de fin
+
+    @Test
+    public void testFinalizarSinIniciarLanzaExcepcion() {
+        assertThrows(ReunionNoIniciadaException.class, () -> {
+            reunion.finalizar(Instant.now());
+        }, "Debería dar error al finalizar una reunión que no ha empezado");
+    }
+
+    @Test
+    public void testFinalizarConIncoherenciaLanzaExcepcion() throws Exception {
+        Instant inicio = Instant.now();
+        reunion.iniciar(inicio);
+        Instant finIncoherente = inicio.minus(Duration.ofHours(1));
+
+        assertThrows(IncoherenciaDuracionReunionException.class, () -> {
+            reunion.finalizar(finIncoherente);
+        }, "Debería dar error si la hora de fin es anterior a la de inicio");
+    }
 }
