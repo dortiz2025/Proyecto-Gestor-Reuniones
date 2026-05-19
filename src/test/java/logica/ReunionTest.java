@@ -135,4 +135,32 @@ public class ReunionTest {
             reunion.addAsistencia(intruso, Instant.now());
         }, "Debería lanzar error si entra alguien no invitado");
     }
+
+    //test estadisticas
+
+    @Test
+    public void testEstadisticasPorcentajeYAusencias() throws Exception {
+        Empleado emp1 = new Empleado("A", "B", "a@mail.com", "1");
+        Empleado emp2 = new Empleado("C", "D", "c@mail.com", "2");
+        Empleado emp3 = new Empleado("E", "F", "e@mail.com", "3");
+
+        reunion.invitarParticipante(emp1);
+        reunion.invitarParticipante(emp2);
+        reunion.invitarParticipante(emp3);
+
+        reunion.iniciar(Instant.now());
+
+        reunion.addAsistencia(emp1, Instant.now());
+        reunion.addAsistencia(emp2, Instant.now());
+
+        List<Persona> ausencias = reunion.getAusencias();
+
+        assertEquals(1, ausencias.size(), "Debe haber 1 ausencia");
+        assertTrue(ausencias.contains(emp3), "El ausente debe ser el empleado 3");
+
+        float porcentaje = reunion.obtenerPorcentajeAsistencia();
+        //por el error de float se debe agregar un delta
+        assertEquals(0.666f, porcentaje, 0.01f, "El porcentaje debe ser aprox 0.666");
+    }
+
 }
