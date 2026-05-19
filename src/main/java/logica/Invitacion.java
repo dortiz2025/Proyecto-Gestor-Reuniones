@@ -1,66 +1,46 @@
 package logica;
 
+
+import interfaces.Invitable;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Clase que representa una invitación a una reunión.
  */
 public class Invitacion {
-    /**
-     * Hora en que se envió la invitación.
-     */
-    private Instant hora;
 
-    /**
-     * Entidad a la que va dirigida la invitación.
-     */
+    private Instant horaEnvio;
     private Invitable invitado;
 
     /**
      * Constructor de la invitación.
      *
-     * @param hora Hora de envío de la invitación.
+     * @param horaEnvio Hora de envío de la invitación.
      * @param invitado Entidad que recibirá la invitación.
      */
-    public Invitacion(Instant hora, Invitable invitado){
-        this.hora = hora;
+    public Invitacion(Instant horaEnvio, Invitable invitado){
+        this.horaEnvio = horaEnvio;
         this.invitado = invitado;
     }
 
     /**
      * Getter de la hora de envío.
      *
-     * @return Retorna la hora de la invitación.
+     * @return Retorna la hora de envío de la invitación.
      */
-    public Instant getHora(){
-        return hora;
-    }
-
-    /**
-     * Setter de la hora de envío.
-     *
-     * @param hora Nueva hora de la invitación.
-     */
-    public void setHora(Instant hora){
-        this.hora = hora;
+    public Instant getHoraEnvio(){
+        return horaEnvio;
     }
 
     /**
      * Getter del invitado.
      *
-     * @return Retorna la entidad invitada.
+     * @return Entrega la referencia de la entidad invitada.
      */
     public Invitable getInvitado(){
         return invitado;
-    }
-
-    /**
-     * Setter del invitado.
-     *
-     * @param invitado Nueva entidad invitada.
-     */
-    public void setInvitado(Invitable invitado){
-        this.invitado = invitado;
     }
 
     /**
@@ -69,10 +49,14 @@ public class Invitacion {
      * @return Retorna la información de la clase.
      */
     @Override
-    public String toString(){
-        return "Invitación {" +
-                "Hora de envío: " + hora +
-                ", Invitado: " + invitado +
-                '}';
+    public String toString() {
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
+        String horaEnvioF = //Formato amigable
+                formatter.format(this.horaEnvio);
+        return "Invitación {\n" +
+                "  Hora de envío: '" + horaEnvioF + "',\n" +
+                "  Invitado: " + this.invitado.toString().replace("\n", "\n  ") + "\n" +
+                "}";
     }
 }

@@ -1,79 +1,72 @@
 package logica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Clase que representa un empleado de una empresa invitado a una reunión.
  */
-public class Empleado extends Persona implements Invitable{
-
+public class Empleado extends Persona{
     private String id;
-    private Departamento departamento;
+
     /**
      * Constructor de Empleado.
-     *
      * @param nombre Asigna el nombre del empleado.
      * @param apellidos Asigna los apellidos del empleado.
      * @param correo Asigna el correo del empleado.
      * @param id Asigna el ID del empleado.
-     * @param departamento Asigna el departamento del empleado.
      */
-    public Empleado(String nombre, String apellidos, String correo, String id, Departamento departamento) {
+    public Empleado(String nombre, String apellidos, String correo, String id) {
 
         super(nombre, apellidos, correo);
-        this.id = id;
-        this.departamento = departamento;
-
-    }
-
-    /**
-     * Setter del id del empleado
-     *
-     * @param id
-     */
-    public void setId(String id) {
         this.id = id;
     }
 
     /**
      * Getter del id del empleado
-     *
      * @return id del empleado
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
-     * Setter del nombre del departamento y cantidad de empleados
-     *
-     * @param departamento
+     * Notifica al empleado que ha sido invitado a una reunión.
      */
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
+    @Override
+    public void invitar() {
+        System.out.println("Invitación para " + this.getNombre());
     }
 
     /**
-     * Getter del nombre del departamento y cantidad de empleados
-     *
-     * @return nombre del departamento
+     * Responde si una persona es igual al empleado actual.
+     * @param persona Persona por la que se consulta.
+     * @return True si son la misma persona, False si no.
      */
-    public Departamento getDepartamento() {
-        return departamento;
+    @Override
+    public boolean incluyeA(Persona persona){
+        return this.equals(persona);
     }
 
     /**
-     * Metodo que entrega información acerca de la clase
-     *
-     * @return información de la clase
+     * Declara las personas que están contenidas en esta entidad.
+     * En este caso es la misma persona.
+     * @return Lista con la persona como único elemento.
+     */
+    @Override
+    public List<Persona> obtenerPersonasRepresentadas(){
+        return List.of(this);
+    }
+
+    /**
+     * Entrega información representativa de Empleado.
+     * @return Información del empleado.
      */
     @Override
     public String toString() {
-        return super.toString() + " id='" + id + departamento.toString();
-    }
-
-    /**
-     * Metodo para invitar inducido por la interfaz
-     */
-    public void invitar() {
-        System.out.println("Invitación para " + getNombre());
+        return "Empleado {\n" +
+                "  ID: '" + id + "',\n" +
+                "  " + super.toString().replace("\n", "\n  ") +  "\n" +
+                "}";
     }
 }
