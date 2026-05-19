@@ -59,4 +59,14 @@ public class ReunionTest {
             reunion.finalizar(finIncoherente);
         }, "Debería dar error si la hora de fin es anterior a la de inicio");
     }
+    @Test
+    public void testCalcularTiempoReal() throws Exception {
+        Instant inicio = Instant.now();
+        Instant fin = inicio.plus(Duration.ofMinutes(45));
+
+        reunion.iniciar(inicio);
+        reunion.finalizar(fin);
+
+        assertEquals(45.0f, reunion.calcularTiempoReal(), "El tiempo real calculado debe ser de 45 minutos");
+    }
 }
